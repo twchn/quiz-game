@@ -2,7 +2,7 @@
   <main class="main">
     <button class="invite-code head-btn">填写邀请码</button>
     <button class="rank-list head-btn">排行榜&nbsp;&gt;</button>
-    <section class="info-panel">
+    <section class="info-panel">  <!--中间的信息栏-->
       <img class="avatar" src="../assets/avatar.jpg" alt="头像">
       <div class="text-info">
         <div>
@@ -15,26 +15,30 @@
           <p>&yen;&nbsp;1.00</p>
         </div>
       </div>
-      <div class="begin-btn practice">
-        <div></div>
-        <div>
+      <!--三个按钮-->
+      <button class="begin-btn practice-btn">
+        <span class="border"></span>
+        <span class="border">
           练习模式 (每天三次机会)
-        </div>
-      </div>
-      <div class="begin-btn">
-        <div></div>
-        <div>
+        </span>
+      </button>
+      <button class="begin-btn">
+        <span class="border"></span>
+        <span class="border">
           <img class="begin" src="../assets/begin.svg" alt="begin">
           开始答题
-        </div>
-      </div>
-      <div class="begin-btn">
-        <div></div>
-        <div>
-          <img class="begin" src="../assets/begin.svg" alt="begin">
-          限时专场
-        </div>
-      </div>
+        </span>
+      </button>
+      <button class="begin-btn limit-time-btn">
+        <span class="border"></span>
+        <span class="border">
+          <img class="limit-time-img" src="../assets/limit-time-answer.png" alt="begin">
+          <span class="limit-time-intro">
+            <span>定期开启</span>
+            <span>十分钟限时答题</span>
+          </span>
+        </span>
+      </button>
     </section>
   </main>
 </template>
@@ -74,11 +78,12 @@ export default {
     right: 25%;
     background-color: #e5f0fa;
   }
+  // 信息栏
   .info-panel {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 90%;
+    width: 88%;
     height: 80%;
     margin: auto;
     background-color: #fff;
@@ -91,6 +96,7 @@ export default {
       border-radius: 20px;
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
     }
+    // 剩余游戏次数和奖金
     .text-info {
       width: 80%;
       display: flex;
@@ -109,40 +115,64 @@ export default {
         background-color: #eee;
       }
     }
+    // 开始按钮
     .begin-btn {
       margin: 10px 10px;
       width: 150px;
-      height: 30px;
+      height: 32px;
       position: relative;
-      div {
+      border-style: none;
+      background-color: #fff;
+      .border {
         position: absolute;
+        left: 0;
         width: 100%;
         height: 100%;
         line-height: 30px;
-        border: 1px solid #000;
+        border: 0.1em solid #00152c;
         border-radius: 15px;
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        font-size: 13px;
+        font-size: 14px;
       }
-      div:nth-child(1) {
-        top: 3px;
+      .border:nth-child(1) {
+        top: 4px;
         background-color: #4866f1;
       }
-      div:nth-child(2) {
+      .border:nth-child(2) {
         top: 0;
         background-color: #fff;
       }
       .begin {
         width: 16px;
         height: 16px;
-        margin-right: 10px;
+        margin-right: 16px;
       }
     }
-    .practice {
-      div {
+    .practice-btn {
+      .border {
+        font-size: 12px;
+      }
+    }
+    .limit-time-btn {
+      .border {
+        width: 90%;
+        padding: 0 5%;
+        justify-content: space-around;
+        color: #eee;
+      }
+      .border:nth-child(2) {
+        background-color: #198cf9;
+      }
+      .limit-time-img {
+        height: 100%;
+      }
+      .limit-time-intro {
+        display: flex;
+        flex-direction: column;
+        line-height: 15px;
         font-size: 0.7em;
       }
     }
