@@ -2,6 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
 import 'normalize.css';
+import 'vue-awesome/icons/question-circle';
 import App from './App';
 import router from './router';
 

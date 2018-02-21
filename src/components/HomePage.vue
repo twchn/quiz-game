@@ -2,7 +2,8 @@
   <main class="main">
     <button class="invite-code head-btn">填写邀请码</button>
     <button class="rank-list head-btn">排行榜&nbsp;&gt;</button>
-    <section class="info-panel">  <!--中间的信息栏-->
+    <!--中间的信息栏-->
+    <section class="info-panel">
       <img class="avatar" src="../assets/avatar.jpg" alt="头像">
       <div class="text-info">
         <div>
@@ -39,11 +40,31 @@
           </span>
         </span>
       </button>
+      <!--活动预告-->
+      <div class="trailer">
+        <div class="title">限时答题活动预告</div>
+        <div class="content">
+          <p>今天21:00</p>
+          <div></div>
+          <p>&yen;100&nbsp;奖金</p>
+        </div>
+      </div>
+      <!--分割线-->
+      <div class="divider"></div>
+      <!--滚动消息-->
+      <div class="message">
+        tips: 邀请一位好友获得一次游戏机会
+      </div>
     </section>
+    <div class="help">
+      <Icon name="question-circle" class="help-icon" />游戏规则
+    </div>
   </main>
 </template>
 
 <script>
+import Icon from 'vue-awesome/components/Icon';
+
 export default {
   name: 'HomePage',
   data() {
@@ -51,12 +72,16 @@ export default {
       msg: 'Welcome to Your Vue.js App',
     };
   },
+  components: {
+    Icon,
+  },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .main {
+  width: 100%;
   height: 69vh;
   background: url("../assets/background.png") no-repeat center center;
   background-size: 100% 100%;
@@ -83,8 +108,9 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
     width: 88%;
-    height: 80%;
+    height: 400px;
     margin: auto;
     background-color: #fff;
     border-radius: 8px;
@@ -123,6 +149,7 @@ export default {
       position: relative;
       border-style: none;
       background-color: #fff;
+      outline: none;
       .border {
         position: absolute;
         left: 0;
@@ -151,11 +178,13 @@ export default {
         margin-right: 16px;
       }
     }
+    // 练习模式按钮
     .practice-btn {
       .border {
         font-size: 12px;
       }
     }
+    // 限时答题按钮
     .limit-time-btn {
       .border {
         width: 90%;
@@ -175,6 +204,61 @@ export default {
         line-height: 15px;
         font-size: 0.7em;
       }
+    }
+    // 限时答题活动预告
+    .trailer {
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      /*justify-content: center;*/
+      .title {
+        font-size: 12px;
+        color: #444;
+      }
+      .content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        div {
+          margin: 0 16px;
+          width: 1px;
+          height: 16px;
+          background-color: #eee;
+        }
+        p {
+          margin: 10px 0;
+        }
+      }
+    }
+    // 分割线
+    .divider {
+      position: absolute;
+      bottom: 32px;
+      width: 88%;
+      height: 1px;
+      background-color: #eee;
+    }
+    // 滚动消息
+    .message {
+      position: absolute;
+      bottom: 0;
+      line-height: 32px;
+      font-size: 12px;
+    }
+  }
+  .help {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 15px;
+    color: #fff;
+    font-size: 12px;
+    text-decoration: underline;
+    display: flex;
+    align-items: center;
+    .help-icon {
+      height: 12px;
     }
   }
 }
