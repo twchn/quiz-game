@@ -116,10 +116,10 @@ export default {
     border-radius: 8px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
     .avatar {
-      margin-top: 18px;
-      width: 40px;
-      height: 40px;
-      border-radius: 20px;
+      margin-top: 15px;
+      width: 46px;
+      height: 46px;
+      border-radius: 23px;
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
     }
     // 剩余游戏次数和奖金
@@ -131,6 +131,7 @@ export default {
       align-items: center;
       .title {
         font-size: 12px;
+        color: #333;
       }
       div p {
         text-align: center;
@@ -143,7 +144,7 @@ export default {
     }
     // 开始按钮
     .begin-btn {
-      margin: 10px 10px;
+      margin: 7px 0 13px;
       width: 150px;
       height: 32px;
       position: relative;
