@@ -1,5 +1,9 @@
 <template>
   <main class="main">
+    <div v-if="loading" class="loading">
+      <img src="../assets/loading.gif" alt="loading">
+      <p>加载中...</p>
+    </div>
     <button class="invite-code head-btn">填写邀请码</button>
     <button class="rank-list head-btn">排行榜&nbsp;&gt;</button>
     <!--中间的信息栏-->
@@ -52,9 +56,7 @@
       <!--分割线-->
       <div class="divider"></div>
       <!--滚动消息-->
-      <div class="message">
-        tips: 邀请一位好友获得一次游戏机会
-      </div>
+      <ScrollMessage class="message" :messages="messages" />
     </section>
     <div class="help">
       <Icon name="question-circle" class="help-icon" />游戏规则
@@ -64,16 +66,19 @@
 
 <script>
 import Icon from 'vue-awesome/components/Icon';
+import ScrollMessage from './ScrollMessage';
 
 export default {
   name: 'HomePage',
   data() {
     return {
-      msg: 'Welcome to Your Vue.js App',
+      loading: false,
+      messages: ['提示：邀请一名好友获得一次游戏机会', '小技巧：所有答案都在资委手册微信小程序里哦~'],
     };
   },
   components: {
     Icon,
+    ScrollMessage,
   },
 };
 </script>
@@ -86,6 +91,22 @@ export default {
   background: url("../assets/background.png") no-repeat center center;
   background-size: 100% 100%;
   padding-top: 31vh;
+  // 加载动画
+  .loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 99;
+    color: #000;
+  }
+  // 头部按钮
   .head-btn {
     position: absolute;
     top: 24%;
@@ -115,11 +136,12 @@ export default {
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    // 头像
     .avatar {
-      margin-top: 15px;
-      width: 46px;
-      height: 46px;
-      border-radius: 23px;
+      margin-top: 14px;
+      width: 48px;
+      height: 48px;
+      border-radius: 24px;
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
     }
     // 剩余游戏次数和奖金
@@ -244,10 +266,11 @@ export default {
     .message {
       position: absolute;
       bottom: 0;
-      line-height: 32px;
+      height: 32px;
       font-size: 12px;
     }
   }
+  // 游戏规则
   .help {
     position: absolute;
     left: 50%;
