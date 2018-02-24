@@ -59,8 +59,10 @@
       <ScrollMessage class="message" :messages="messages" />
     </section>
     <div class="help">
-      <Icon name="question-circle" class="help-icon" />游戏规则
+      <Icon name="question-circle" class="help-icon" />
+      <router-link to="/rules">游戏规则</router-link>
     </div>
+    <router-view></router-view>
   </main>
 </template>
 
@@ -73,13 +75,13 @@ export default {
   data() {
     return {
       loading: false,
-      messages: ['提示：邀请一名好友获得一次游戏机会', '小技巧：所有答案都在资委手册微信小程序里哦~'],
+      messages: ['提示：邀请一名好友获得一次游戏机会', '小技巧：所有答案都在资委手册微信小程序里哦~']
     };
   },
   components: {
     Icon,
-    ScrollMessage,
-  },
+    ScrollMessage
+  }
 };
 </script>
 
@@ -283,6 +285,9 @@ export default {
     align-items: center;
     .help-icon {
       height: 12px;
+    }
+    a {
+      color: #fff;
     }
   }
 }
