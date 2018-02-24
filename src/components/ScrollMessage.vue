@@ -15,12 +15,12 @@ export default {
     messages: Array,
     switchDelay: {
       default: 3000,
-      type: Number,
-    },
+      type: Number
+    }
   },
   data() {
     return {
-      animate: false,
+      animate: false
     };
   },
   methods: {
@@ -30,7 +30,7 @@ export default {
         this.animate = false;
         this.messages.push(this.messages.shift());
       }, 1200);
-    },
+    }
   },
   created() {
     // 判断是否需要滚动
@@ -44,7 +44,7 @@ export default {
   },
   beforeDestroy() {
     clearInterval(this.timer);
-  },
+  }
 };
 </script>
 
