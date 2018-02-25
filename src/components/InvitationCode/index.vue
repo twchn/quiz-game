@@ -1,6 +1,6 @@
 <template>
   <transition name="slide-fade">
-    <div class="code-container">
+    <div class="code-container" @click.self="back">
       <div class="modal">
         <img class="close-btn" @click="back" src="../../assets/icon/close.svg" alt="close">
         <h1>请输入邀请码</h1>
