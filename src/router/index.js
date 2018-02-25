@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import HomePage from '@/components/HomePage';
 import RulesPage from '@/components/RulesPage';
 import InvitationCode from '@/components/InvitationCode';
+import RankingList from '@/components/RankingList';
 
 Vue.use(Router);
 
@@ -20,6 +21,10 @@ export default new Router({
         {
           path: 'invitation',
           component: InvitationCode
+        },
+        {
+          path: 'list',
+          component: RankingList
         }
       ]
     }

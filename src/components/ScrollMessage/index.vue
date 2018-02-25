@@ -48,22 +48,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.animation {
-  transform: translateY(-100%);
-  transition: all 1s;
-}
-.container {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow: hidden;
-  li {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    list-style: none;
-    height: 100%;
-  }
-}
-</style>
+<style lang="scss" scoped src="./style.scss"></style>
