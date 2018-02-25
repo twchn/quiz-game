@@ -1,10 +1,14 @@
 <template>
-  <main class="main">
-    <div v-if="loading" class="loading">
-      <img src="../assets/loading.gif" alt="loading">
-      <p>加载中...</p>
-    </div>
-    <button class="invite-code head-btn">填写邀请码</button>
+<div>
+  <div v-if="loading" class="loading">
+    <img src="../assets/loading.gif" alt="loading">
+    <p>加载中...</p>
+  </div>
+  <main class="main" :class="{ blur: whetherBlur}">
+    <div class="mask"></div>
+    <router-link to="/invitation">
+      <button class="invite-code head-btn" @click="blur">填写邀请码</button>
+    </router-link>
     <button class="rank-list head-btn">排行榜&nbsp;&gt;</button>
     <!--中间的信息栏-->
     <section class="info-panel">
@@ -62,8 +66,9 @@
       <Icon name="question-circle" class="help-icon" />
       <router-link to="/rules">游戏规则</router-link>
     </div>
-    <router-view></router-view>
   </main>
+  <router-view></router-view>
+</div>
 </template>
 
 <script>
@@ -75,12 +80,28 @@ export default {
   data() {
     return {
       loading: false,
+      whetherBlur: false,
       messages: ['提示：邀请一名好友获得一次游戏机会', '小技巧：所有答案都在资委手册微信小程序里哦~']
     };
   },
   components: {
     Icon,
     ScrollMessage
+  },
+  methods: {
+    blur() {
+      this.whetherBlur = true;
+    }
+  },
+  watch: {
+    $route(to, from) {
+      if (to.path === '/invitation') {
+        this.whetherBlur = true;
+      }
+      if (from.path === '/invitation') {
+        this.whetherBlur = false;
+      }
+    }
   }
 };
 </script>
@@ -93,21 +114,6 @@ export default {
   background: url("../assets/background.png") no-repeat center center;
   background-size: 100% 100%;
   padding-top: 31vh;
-  // 加载动画
-  .loading {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 99;
-    color: #000;
-  }
   // 头部按钮
   .head-btn {
     position: absolute;
@@ -290,5 +296,33 @@ export default {
       color: #fff;
     }
   }
+}
+// 模糊
+.blur {
+  filter: blur(4px);
+  .mask {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+  }
+}
+// 加载动画
+.loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
+  color: #000;
 }
 </style>
