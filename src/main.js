@@ -3,6 +3,7 @@
 import Vue from 'vue';
 import 'normalize.css';
 import 'vue-awesome/icons/question-circle';
+import 'vue-awesome/icons/angle-right';
 import App from './App';
 import router from './router';
 

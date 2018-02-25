@@ -7,10 +7,10 @@
   <main class="main" :class="{ blur: whetherBlur}">
     <div class="mask"></div>
     <router-link to="/invitation">
-      <button class="invite-code head-btn" @click="blur">填写邀请码</button>
+      <button class="invite-code head-btn">填写邀请码</button>
     </router-link>
     <router-link to="/list">
-      <button class="rank-list head-btn">排行榜&nbsp;&gt;</button>
+      <button class="rank-list head-btn">排行榜&nbsp;<Icon name="angle-right" /></button>
     </router-link>
     <!--中间的信息栏-->
     <section class="info-panel">
@@ -18,12 +18,14 @@
       <div class="text-info">
         <div>
           <p class="title">剩余游戏次数</p>
-          <p>1/5</p>
+          <router-link to="/share">
+            <p class="content">1/5&nbsp;<Icon class="icon" name="angle-right" /></p>
+          </router-link>
         </div>
         <div></div>
         <div>
           <p class="title">已获得奖金</p>
-          <p>&yen;&nbsp;1.00</p>
+          <p class="content">&yen;&nbsp;1.00&nbsp;<Icon class="icon" name="angle-right" /></p>
         </div>
       </div>
       <!--三个按钮-->
@@ -91,18 +93,10 @@ export default {
     ScrollMessage
   },
   methods: {
-    blur() {
-      this.whetherBlur = true;
-    }
   },
   watch: {
-    $route(to, from) {
-      if (to.path === '/invitation') {
-        this.whetherBlur = true;
-      }
-      if (from.path === '/invitation') {
-        this.whetherBlur = false;
-      }
+    $route() {
+      this.whetherBlur = ['/invitation', '/share'].indexOf(this.$route.path) > -1;
     }
   }
 };

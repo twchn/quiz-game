@@ -4,6 +4,7 @@ import HomePage from '@/components/HomePage';
 import RulesPage from '@/components/RulesPage';
 import InvitationCode from '@/components/InvitationCode';
 import RankingList from '@/components/RankingList';
+import SharePage from '@/components/SharePage';
 
 Vue.use(Router);
 
@@ -25,6 +26,10 @@ export default new Router({
         {
           path: 'list',
           component: RankingList
+        },
+        {
+          path: 'share',
+          component: SharePage
         }
       ]
     }

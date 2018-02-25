@@ -8,9 +8,13 @@
   .head-btn {
     position: absolute;
     top: 24%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-style: none;
-    border-radius: calc(0.5em + 4px);
+    border-radius: 12px;
     padding: 4px 10px;
+    height: 24px;
     font-size: 12px;
     outline: none;
   }
@@ -53,13 +57,24 @@
         font-size: 12px;
         color: #333;
       }
-      div p {
-        text-align: center;
+      .content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 16px;
+        line-height: 16px;
+        .icon {
+          margin-top: -1px;
+        }
       }
       div:nth-child(2) {
         width: 1px;
         height: 1em;
         background-color: #eee;
+      }
+      a {
+        text-decoration: none;
+        color: #000;
       }
     }
     // 开始按钮
@@ -176,11 +191,11 @@
     bottom: 15px;
     color: #fff;
     font-size: 12px;
-    text-decoration: underline;
     display: flex;
     align-items: center;
     .help-icon {
       height: 12px;
+      margin-top: -1px;
     }
     a {
       color: #fff;
