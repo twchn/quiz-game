@@ -90,7 +90,7 @@ export default {
 
 <style lang="scss" scoped>
 .slide-fade-enter-active, .slide-fade-leave-active {
-  transition: all 0.3s;
+  transition: all 0.2s;
 }
 .slide-fade-enter, .slide-fade-leave-to {
   transform: translateY(100%);
