@@ -140,7 +140,7 @@
 
 <script>
 export default {
-  name: 'RulesPage',
+  name: 'RankingList',
   methods: {
     back() {
       this.$router.back();
