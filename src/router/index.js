@@ -5,6 +5,7 @@ import RulesPage from '@/components/RulesPage';
 import InvitationCode from '@/components/InvitationCode';
 import RankingList from '@/components/RankingList';
 import SharePage from '@/components/SharePage';
+import PrizePage from '@/components/PrizePage';
 
 Vue.use(Router);
 
@@ -30,6 +31,10 @@ export default new Router({
         {
           path: 'share',
           component: SharePage
+        },
+        {
+          path: 'prize',
+          component: PrizePage
         }
       ]
     }

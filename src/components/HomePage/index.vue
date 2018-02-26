@@ -25,7 +25,9 @@
         <div></div>
         <div>
           <p class="title">已获得奖金</p>
-          <p class="content">&yen;&nbsp;1.00&nbsp;<Icon class="icon" name="angle-right" /></p>
+          <router-link to="prize">
+            <p class="content">&yen;&nbsp;1.00&nbsp;<Icon class="icon" name="angle-right" /></p>
+          </router-link>
         </div>
       </div>
       <!--三个按钮-->
@@ -96,7 +98,7 @@ export default {
   },
   watch: {
     $route() {
-      this.whetherBlur = ['/invitation', '/share'].indexOf(this.$route.path) > -1;
+      this.whetherBlur = ['/invitation', '/share', '/prize'].indexOf(this.$route.path) > -1;
     }
   }
 };

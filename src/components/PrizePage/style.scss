@@ -1,0 +1,44 @@
+.close-btn {
+  float: right;
+  margin-top: 12px;
+  margin-right: 12px;
+  width: 10px;
+  height: 10px;
+}
+.prize-container {
+  width: 100%;
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .avatar {
+    width: 48px;
+    height: 48px;
+  }
+  .user-name {
+    margin: 18px 0 16px;
+  }
+  .text {
+    margin: 0;
+    font-size: 12px;
+    color: #3557b2;
+  }
+  .money {
+    margin-top: 12px;
+    font-size: 24px;
+    color: #062fa1;
+  }
+  .title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .rules {
+    color: #333;
+    border-radius: 6px;
+    font-size: 14px;
+    li {
+      margin: 8px 0;
+    }
+  }
+}
