@@ -1,0 +1,26 @@
+.main {
+  width: 100%;
+  height: 100vh;
+  background: #fff url("../../assets/countdown/countdown-background.png") no-repeat center center;
+  background-size: 100% 100%;
+  display: flex;
+  justify-content: center;
+  align-items:  center;
+  .countdown-img {
+    width: 60%;
+  }
+  // 进出动画
+  .scale-fade-enter-active {
+    transition: all 1s;
+  }
+ .scale-fade-leave-active {
+   transition: all 0.5s;
+ }
+  .scale-fade-enter {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  .scale-fade-leave-to {
+    opacity: 0;
+  }
+}

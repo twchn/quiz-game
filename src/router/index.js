@@ -6,6 +6,7 @@ import InvitationCode from '@/components/InvitationCode';
 import RankingList from '@/components/RankingList';
 import SharePage from '@/components/SharePage';
 import PrizePage from '@/components/PrizePage';
+import Countdown from '@/components/Countdown';
 
 Vue.use(Router);
 
@@ -37,6 +38,10 @@ export default new Router({
           component: PrizePage
         }
       ]
+    },
+    {
+      path: '/countdown',
+      component: Countdown
     }
   ]
 });

@@ -1,0 +1,58 @@
+<template>
+  <main class="main" @click="playCountdown">
+    <transition name="scale-fade">
+      <img
+        v-if="ready"
+        class="countdown-img"
+        :src="imgSrc"
+        alt="countdown"
+      >
+    </transition>
+    <audio :src="audioSrc" ref="audio"></audio>
+  </main>
+</template>
+
+<script>
+import img1 from '../../assets/countdown/1.png';
+import img2 from '../../assets/countdown/2.png';
+import img3 from '../../assets/countdown/3.png';
+import audioSrc from '../../assets/countdown/countdown.mp3';
+
+export default {
+  name: 'Countdown',
+  data() {
+    return {
+      ready: false,
+      count: 0,
+      imgs: [img3, img2, img1],
+      audioSrc
+    };
+  },
+  computed: {
+    imgSrc() {
+      return this.imgs[this.count];
+    }
+  },
+  methods: {
+    playCountdown() {
+      if (this.count === 3) {
+        clearInterval(this.timer);
+        return;
+      }
+      this.ready = true;
+      this.$refs.audio.play();
+      setTimeout(() => {
+        this.ready = false;
+        this.count += 1;
+      }, 1000);
+    }
+  },
+  mounted() {
+    this.timer = setInterval(() => {
+      this.playCountdown();
+    }, 1500);
+  }
+};
+</script>
+
+<style lang="scss" scoped src="./style.scss"></style>
