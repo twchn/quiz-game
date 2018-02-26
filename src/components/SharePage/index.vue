@@ -1,31 +1,32 @@
 <template>
-  <transition name="slide-fade">
-    <div class="share-container" @click.self="back">
-      <div class="modal">
-        <img class="close-btn" @click="back" src="../../assets/icon/close.svg" alt="close">
-        <p class="invitation-code">123456</p>
-        <h1 class="title">邀请好友填写邀请码，获得游戏机会</h1>
-        <ul class="rules">
-          <li>点击下面的按钮通过朋友圈或者微信分享你的邀请码</li>
-          <li>好友填写你的邀请码参与答题后，双方均获得一次游戏机会</li>
-          <li>每人每天邀请的人数没有限制</li>
-        </ul>
-        <div class="share-btns">
-          <div class="icon">
-            <img src="../../assets/icon/wechat.svg" alt="wechat">
-          </div>
-          <div class="icon">
-            <img src="../../assets/icon/friendster.svg" alt="friendster">
-          </div>
-        </div>
+  <PopupModal>
+    <img class="close-btn" @click="back" src="../../assets/icon/close.svg" alt="close">
+    <p class="invitation-code">123456</p>
+    <h1 class="title">邀请好友填写邀请码，获得游戏机会</h1>
+    <ul class="rules">
+      <li>点击下面的按钮通过朋友圈或者微信分享你的邀请码</li>
+      <li>好友填写你的邀请码参与答题后，双方均获得一次游戏机会</li>
+      <li>每人每天邀请的人数没有限制</li>
+    </ul>
+    <div class="share-btns">
+      <div class="icon">
+        <img src="../../assets/icon/wechat.svg" alt="wechat">
+      </div>
+      <div class="icon">
+        <img src="../../assets/icon/friendster.svg" alt="friendster">
       </div>
     </div>
-  </transition>
+  </PopupModal>
 </template>
 
 <script>
+import PopupModal from '../PopupModal';
+
 export default {
-  name: 'InvitationCode',
+  name: 'SharePage',
+  components: {
+    PopupModal
+  },
   methods: {
     back() {
       this.$router.back();

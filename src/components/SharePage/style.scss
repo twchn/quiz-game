@@ -1,73 +1,53 @@
-.slide-fade-enter-active, .slide-fade-leave-active {
-  transition: all 0.3s;
+.close-btn {
+  float: right;
+  margin-top: 12px;
+  margin-right: 12px;
+  width: 10px;
+  height: 10px;
 }
-.slide-fade-enter, .slide-fade-leave-to {
-  transform: translateY(50%);
-  opacity: 0;
+// 邀请码
+.invitation-code {
+  margin: 24px 0 12px;
+  text-align: center;
+  font-size: 28px;
+  color: #1c064b;
+  letter-spacing: 2px;
 }
-.share-container {
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 10;
-  .modal {
-    position: absolute;
-    left: 6%;
-    bottom: 20px;
-    width: 88%;
-    background-color: #fff;
-    border-radius: 6px;
-    .close-btn {
-      float: right;
-      margin-top: 12px;
-      margin-right: 12px;
-      width: 10px;
-      height: 10px;
-    }
-    .invitation-code {
-      margin: 24px 0 12px;
-      text-align: center;
-      font-size: 28px;
-      color: #1c064b;
-      letter-spacing: 2px;
-    }
-    .title {
-      margin: 0;
-      font-size: 16px;
-      text-align: center;
-      color: #575757;
-    }
-    .rules {
-      margin: 16px 20px;
-      padding: 10px 14px 10px 30px;
-      background-color: #f6f6f6;
-      color: #333;
-      border-radius: 6px;
-      font-size: 14px;
-      li {
-        margin: 8px 0;
-      }
-    }
-    .share-btns {
-      margin: 26px 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      .icon {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 56px;
-        height: 56px;
-        border-radius: 28px;
-        box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-        img {
-          width: 32px;
-          height: 32px;
-        }
-      }
+.title {
+  margin: 0;
+  font-size: 16px;
+  text-align: center;
+  color: #575757;
+}
+// 分享规则
+.rules {
+  margin: 16px 20px;
+  padding: 10px 14px 10px 30px;
+  background-color: #f6f6f6;
+  color: #333;
+  border-radius: 6px;
+  font-size: 14px;
+  li {
+    margin: 8px 0;
+  }
+}
+// 分享按钮
+.share-btns {
+  margin: 26px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 28px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    img {
+      width: 32px;
+      height: 32px;
     }
   }
 }
