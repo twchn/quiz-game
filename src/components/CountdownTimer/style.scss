@@ -1,0 +1,43 @@
+.timer-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #5cc7e4;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .semicircle {
+    position: absolute;
+    top: -1px;
+    width: calc(50% + 1px);
+    height: calc(100% + 2px);
+  }
+  .left {
+    left: -1px;
+    border-top-left-radius: 100% 50%;
+    border-bottom-left-radius: 100% 50%;
+    background-color: #fff;
+    transform-origin: 100% 50%;
+  }
+  .right {
+    right: -1px;
+    border-top-right-radius: 100% 50%;
+    border-bottom-right-radius: 100% 50%;
+    background-color: #fff;
+    transform-origin: 0 50%;
+  }
+  .text {
+    width: calc(100% - 6px);
+    height: calc(100% - 6px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    font-weight: 700;
+    color: #032e9d;
+    background-color: #fff;
+    z-index: 2;
+  }
+}

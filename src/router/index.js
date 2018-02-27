@@ -7,6 +7,7 @@ import RankingList from '@/components/RankingList';
 import SharePage from '@/components/SharePage';
 import PrizePage from '@/components/PrizePage';
 import Countdown from '@/components/Countdown';
+import Quiz from '@/components/Quiz';
 
 Vue.use(Router);
 
@@ -42,6 +43,10 @@ export default new Router({
     {
       path: '/countdown',
       component: Countdown
+    },
+    {
+      path: '/quiz',
+      component: Quiz
     }
   ]
 });
