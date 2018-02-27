@@ -4,6 +4,7 @@
   background: #fff url("../../assets/countdown/countdown-background.png") no-repeat center center;
   background-size: 100% 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items:  center;
   .countdown-img {

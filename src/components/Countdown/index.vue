@@ -8,7 +8,7 @@
         alt="countdown"
       >
     </transition>
-    <audio :src="audioSrc" ref="audio"></audio>
+    <audio :src="audioSrc" ref="audio" controls>浏览器版本过低，请尽快升级</audio>
   </main>
 </template>
 
