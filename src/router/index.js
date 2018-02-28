@@ -8,6 +8,7 @@ import SharePage from '@/components/SharePage';
 import PrizePage from '@/components/PrizePage';
 import Countdown from '@/components/Countdown';
 import Quiz from '@/components/Quiz';
+import NotFound from '@/components/NotFound';
 
 Vue.use(Router);
 
@@ -15,7 +16,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HomePage',
+      name: 'home',
       component: HomePage,
       children: [
         {
@@ -47,6 +48,10 @@ export default new Router({
     {
       path: '/quiz',
       component: Quiz
+    },
+    {
+      path: '*',
+      component: NotFound
     }
   ]
 });

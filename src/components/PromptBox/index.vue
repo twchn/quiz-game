@@ -1,10 +1,18 @@
 <template>
-
+  <transition name="fade">
+    <div class="prompt-box">{{promptMessage}}</div>
+  </transition>
 </template>
 
 <script>
 export default {
-  name: 'index'
+  name: 'PromptBox',
+  props: {
+    promptMessage: {
+      type: String,
+      default: '请稍等！'
+    }
+  }
 };
 </script>
 

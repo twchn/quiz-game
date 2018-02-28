@@ -4,6 +4,7 @@
     <img src="../../assets/loading.gif" alt="loading">
     <p>加载中...</p>
   </div>
+  <PromptBox v-show="showPrompt" :promptMessage="promptMessage" />
   <main class="main" :class="{ blur: whetherBlur}">
     <div class="mask"></div>
     <router-link to="/invitation">
@@ -80,21 +81,32 @@
 <script>
 import Icon from 'vue-awesome/components/Icon';
 import ScrollMessage from '../ScrollMessage';
+import PromptBox from '../PromptBox';
 
 export default {
   name: 'HomePage',
   data() {
     return {
       loading: false,
+      showPrompt: false,
       whetherBlur: false,
-      messages: ['提示：邀请一名好友获得一次游戏机会', '小技巧：所有答案都在资委手册微信小程序里哦~']
+      promptMessage: '',
+      messages: ['提示：邀请一名好友获得一次游戏机会', '小技巧：所有答案都在资委手册微信小程序里哦~', '限时答题答对者平分所有奖金']
     };
   },
   components: {
     Icon,
-    ScrollMessage
+    ScrollMessage,
+    PromptBox
   },
   methods: {
+    showPromptBox(msg) {
+      this.promptMessage = msg;
+      this.showPrompt = true;
+      setTimeout(() => {
+        this.showPrompt = false;
+      }, 2500);
+    }
   },
   watch: {
     $route() {
