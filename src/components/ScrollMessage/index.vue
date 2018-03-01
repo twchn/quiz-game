@@ -1,5 +1,5 @@
 <template>
-  <ul class="container">
+  <ul class="scroll-message">
     <li
       v-for="message in messages"
       :key="message"

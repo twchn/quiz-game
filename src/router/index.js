@@ -16,7 +16,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
+      name: 'HomePage',
       component: HomePage,
       children: [
         {
@@ -28,7 +28,7 @@ export default new Router({
           component: InvitationCode
         },
         {
-          path: 'list',
+          path: 'rank',
           component: RankingList
         },
         {

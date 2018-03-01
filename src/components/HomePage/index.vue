@@ -10,7 +10,7 @@
     <router-link to="/invitation">
       <button class="invite-code head-btn">填写邀请码</button>
     </router-link>
-    <router-link to="/list">
+    <router-link to="/rank">
       <button class="rank-list head-btn">排行榜&nbsp;<Icon name="angle-right" /></button>
     </router-link>
     <!--中间的信息栏-->
