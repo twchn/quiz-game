@@ -106,12 +106,19 @@ export default {
       setTimeout(() => {
         this.showPrompt = false;
       }, 2500);
+    },
+    judgeBlur() {
+      this.whetherBlur = ['/invitation', '/share', '/prize'].indexOf(this.$route.path) > -1;
     }
   },
   watch: {
     $route() {
-      this.whetherBlur = ['/invitation', '/share', '/prize'].indexOf(this.$route.path) > -1;
+      this.judgeBlur();
     }
+  },
+  created() {
+    // 避免刷新后失去背景模糊
+    this.judgeBlur();
   }
 };
 </script>
