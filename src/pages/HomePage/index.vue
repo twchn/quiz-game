@@ -38,20 +38,20 @@
         </div>
       </div>
       <!--三个按钮-->
-      <button class="begin-btn practice-btn">
+      <button class="begin-btn practice-btn" @click="practice">
         <span class="border"></span>
         <span class="border">
           练习模式 (每天三次机会)
         </span>
       </button>
-      <button class="begin-btn">
+      <button class="begin-btn" @click="playGame">
         <span class="border"></span>
         <span class="border">
           <img class="begin" src="../../assets/icon/begin.svg" alt="begin">
           开始答题
         </span>
       </button>
-      <button class="begin-btn limit-time-btn">
+      <button class="begin-btn limit-time-btn" @click="playActivity">
         <span class="border"></span>
         <span class="border">
           <img class="limit-time-img" src="../../assets/limit-time-answer.png" alt="begin">
@@ -67,7 +67,7 @@
         <div class="content">
           <p>{{ trailerTime }}</p>
           <div></div>
-          <p>&yen;{{ trailerPrize }}&nbsp;奖金</p>
+          <p>&yen;&nbsp;{{ trailerPrize }}&nbsp;奖金</p>
         </div>
       </div>
       <!--分割线-->
@@ -80,15 +80,16 @@
       <router-link to="/rules">游戏规则</router-link>
     </div>
   </main>
-  <router-view></router-view>
+  <router-view @showPromptBox="showPromptBox"></router-view>
 </div>
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex';
 import Icon from 'vue-awesome/components/Icon';
-import ScrollMessage from '../ScrollMessage';
-import PromptBox from '../PromptBox';
-import { getUserInfo } from '../../api';
+import ScrollMessage from '../../components/ScrollMessage';
+import PromptBox from '../../components/PromptBox';
+import { getUserInfo, beginPlay, beginPractice, beginActivity } from '../../api';
 
 export default {
   name: 'HomePage',
@@ -98,44 +99,105 @@ export default {
       showPrompt: false,
       whetherBlur: false,
       promptMessage: '',
-      headImgUrl: '',
-      gameNumber: [],
-      prize: 0,
       trailerTime: '',
       trailerPrize: 0,
-      messages: ['提示：邀请一名好友获得一次游戏机会', '小技巧：所有答案都在资委手册微信小程序里哦~', '限时答题答对者平分所有奖金']
+      messages: []
     };
+  },
+  methods: {
+    playGame() {
+      if (!this.gameNumber[0]) {
+        this.showPromptBox('游戏次数不够，尝试填写邀请码吧！');
+        return;
+      }
+      beginPlay({ openid: this.openid })
+        .then((res) => {
+          if (res.data.state) {
+            this.$store.commit('PLAY_GAME');
+            this.$router.push('/countdown');
+          } else {
+            this.showPromptBox('抱歉，暂时无法答题');
+          }
+        })
+        .catch(() => {
+          this.showPromptBox('抱歉，暂时无法答题');
+        });
+    },
+    practice() {
+      if (!this.practiceNumber) {
+        this.showPromptBox('今日练习次数已用完，试试游戏模式吧！');
+        return;
+      }
+      beginPractice({ openid: this.openid })
+        .then((res) => {
+          if (res.data.state) {
+            this.$store.commit('PRACTICE');
+            this.$router.push('/countdown');
+          } else {
+            this.showPromptBox('抱歉，暂时无法答题');
+          }
+        })
+        .catch(() => {
+          this.showPromptBox('抱歉，暂时无法答题');
+        });
+    },
+    playActivity() {
+      beginActivity({ openid: this.openid })
+        .then((res) => {
+          if (res.data.state) {
+            this.$router.push('/countdown');
+          } else {
+            this.showPromptBox('抱歉，暂时无法答题');
+          }
+        })
+        .catch(() => {
+          this.showPromptBox('抱歉，暂时无法答题');
+        });
+    },
+    showPromptBox(msg) {
+      if (msg === '') {
+        return;
+      }
+      this.promptMessage = msg;
+      this.showPrompt = true;
+      clearTimeout(this.timeout);
+      this.timeout = setTimeout(() => {
+        this.showPrompt = false;
+      }, 2500);
+    },
+    judgeBlur() {
+      this.whetherBlur = ['/invitation', '/share', '/prize'].indexOf(this.$route.path) > -1;
+    },
+    ...mapMutations({
+      setUserInfo: 'SET_USER_INFO'
+    })
+  },
+  computed: mapState([
+    'openid',
+    'headImgUrl',
+    'gameNumber',
+    'prize',
+    'practiceNumber'
+  ]),
+  watch: {
+    $route() {
+      this.judgeBlur();
+    }
   },
   components: {
     Icon,
     ScrollMessage,
     PromptBox
   },
-  methods: {
-    showPromptBox(msg) {
-      this.promptMessage = msg;
-      this.showPrompt = true;
-      setTimeout(() => {
-        this.showPrompt = false;
-      }, 2500);
-    },
-    judgeBlur() {
-      this.whetherBlur = ['/invitation', '/share', '/prize'].indexOf(this.$route.path) > -1;
-    }
-  },
-  watch: {
-    $route() {
-      this.judgeBlur();
-    }
-  },
   created() {
     // 避免刷新后失去背景模糊
     this.judgeBlur();
     getUserInfo().then(({ data }) => {
+      this.setUserInfo(data);
+      // this.headImgUrl = data.headImgUrl;
+      // this.gameNumber = data.gameNumber;
+      // this.prize = data.prize.toFixed(2);
       this.messages = data.messages;
-      this.headImgUrl = data.headImgUrl;
-      this.gameNumber = data.gameNumber;
-      this.prize = data.prize.toFixed(2);
       this.trailerPrize = data.trailer.prize;
       const trailerTime = new Date(data.trailer.time);
       const restDay = trailerTime.getDate() - new Date().getDate();

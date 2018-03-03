@@ -6,6 +6,7 @@ import 'vue-awesome/icons/question-circle';
 import 'vue-awesome/icons/angle-right';
 import App from './App';
 import router from './router';
+import store from './store';
 import '../mock/mock';
 
 Vue.config.productionTip = false;
@@ -14,6 +15,7 @@ Vue.config.productionTip = false;
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 });

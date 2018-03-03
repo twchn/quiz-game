@@ -2,13 +2,13 @@
   <transition name="slide-fade">
     <div class="list-container">
       <header class="header">
-        <img class="close-icon" src="../../assets/icon/close-white.svg" alt="close" @click="back">
+        <img class="close-icon" src="../../assets/icon/close-white.svg" alt="close" @click="goHome">
         <h1 class="heading">排行榜</h1>
       </header>
       <div class="content">
         <nav>
-          <button class="active">本周</button>
-          <button>总榜</button>
+          <button>本周</button>
+          <button class="active">总榜</button>
         </nav>
         <div class="top-list">
           <div
@@ -37,10 +37,10 @@
         </div>
         <div class="self list">
           <div class="list-box">
-            <span class="rank">520</span>
-            <img class="avatar" src="../../assets/avatar.jpg" alt="avatar">
-            <div class="user-name">手机用户123412342</div>
-            <div class="score">88分</div>
+            <span class="rank">{{ rank }}</span>
+            <img class="avatar" :src="headImgUrl" alt="avatar">
+            <div class="user-name">{{ nickname }}</div>
+            <div class="score">{{ score }}分</div>
           </div>
         </div>
       </div>
@@ -49,6 +49,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import { getRankingList } from '../../api';
 
 export default {
@@ -59,10 +60,16 @@ export default {
     };
   },
   methods: {
-    back() {
-      this.$router.back();
+    goHome() {
+      this.$router.push('/');
     }
   },
+  computed: mapState([
+    'nickname',
+    'headImgUrl',
+    'score',
+    'rank'
+  ]),
   created() {
     getRankingList().then(({ data }) => {
       this.rankingList = data.rankingList;

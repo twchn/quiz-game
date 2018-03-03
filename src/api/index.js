@@ -5,5 +5,21 @@ export function getUserInfo() {
 }
 
 export function getRankingList() {
-  return request('get', 'rank');
+  return request('get', '/rank');
+}
+
+export function beginPlay({ openid }) {
+  return request('post', '/play', { openid });
+}
+
+export function beginPractice({ openid }) {
+  return request('post', '/practice', { openid });
+}
+
+export function beginActivity({ openid }) {
+  return request('post', '/activity', { openid });
+}
+
+export function invite({ openid, code }) {
+  return request('post', '/invite', { openid, code });
 }

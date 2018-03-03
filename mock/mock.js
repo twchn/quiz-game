@@ -4,13 +4,15 @@ import Mock from 'mockjs';
 
 // 用户信息
 Mock.mock('/userinfo', 'get', {
+  openid: '@id',
   nickname: '@name',
   headImgUrl: 'https://placeimg.com/64/64/people',
   invitationCode: '123654',
-  score: 100,
+  score: '@natural(0, 999)',
   gameNumber: [2, 3],
-  practiceNumber: 3,
+  practiceNumber: 0,
   prize: 1.5,
+  rank: 99,
   trailer: {
     time: new Date(2018, 2, 5, 21, 30),
     prize: 200
@@ -23,10 +25,10 @@ Mock.mock('/userinfo', 'get', {
 });
 
 // 排行榜数据
-Mock.mock('rank', 'get', {
+Mock.mock('/rank', 'get', {
   'rankingList|20': [
     {
-      userId: '@natural(100000, 9999999)',
+      openid: '@id',
       nickname: '@name',
       headImgUrl: 'https://placeimg.com/64/64/people@word',
       score: '@natural(0, 999)'

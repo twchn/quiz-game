@@ -12,8 +12,8 @@
 export default {
   name: 'PopupModal',
   methods: {
-    back() {
-      this.$router.back();
+    goHome() {
+      this.$router.push('/');
     }
   }
 };

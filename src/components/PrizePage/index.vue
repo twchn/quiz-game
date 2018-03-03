@@ -1,11 +1,11 @@
 <template>
   <PopupModal>
-    <img class="close-btn" @click="back" src="../../assets/icon/close.svg" alt="close">
+    <img class="close-btn" @click="goHome" src="../../assets/icon/close.svg" alt="close">
     <div class="prize-container">
-      <img class="avatar" src="../../assets/avatar.jpg" alt="avatar">
-      <p class="user-name">用户某某某123</p>
+      <img class="avatar" :src="headImgUrl" alt="avatar">
+      <p class="user-name">{{ nickname }}</p>
       <p class="text">获得奖金</p>
-      <p class="money">&yen;&nbsp;1.00</p>
+      <p class="money">&yen;&nbsp;{{ prize }}</p>
       <h1 class="title">提现规则</h1>
       <ul class="rules">
         <li>截图本页发送到公众号 <strong>HUSTEI资委会</strong>（HUSTEIZW）后台</li>
@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import PopupModal from '../PopupModal';
 
 export default {
@@ -26,9 +27,14 @@ export default {
   components: {
     PopupModal
   },
+  computed: mapState([
+    'nickname',
+    'headImgUrl',
+    'prize'
+  ]),
   methods: {
-    back() {
-      this.$router.back();
+    goHome() {
+      this.$router.push('/');
     }
   }
 };

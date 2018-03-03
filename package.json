@@ -15,7 +15,8 @@
     "normalize.css": "^8.0.0",
     "vue": "^2.5.2",
     "vue-awesome": "^2.3.4",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

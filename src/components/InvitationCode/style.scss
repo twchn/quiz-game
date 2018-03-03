@@ -65,8 +65,11 @@
         border-radius: 18px;
         border-style: none;
         outline: none;
-        background-color: #fb648c;
+        background-color: #d3d3d3;
         color: #fff;
+      }
+      .active {
+        background-color: #fb648c;
       }
     }
   }

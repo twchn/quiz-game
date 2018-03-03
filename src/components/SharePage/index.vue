@@ -1,10 +1,10 @@
 <template>
   <PopupModal>
-    <img class="close-btn" @click="back" src="../../assets/icon/close.svg" alt="close">
-    <p class="invitation-code">123456</p>
+    <img class="close-btn" @click="goHome" src="../../assets/icon/close.svg" alt="close">
+    <p class="invitation-code">{{ invitationCode }}</p>
     <h1 class="title">邀请好友填写邀请码，获得游戏机会</h1>
     <ul class="rules">
-      <li>点击下面的按钮通过朋友圈或者微信分享你的邀请码</li>
+      <li>填写好友邀请码或者向好友分享你的邀请码</li>
       <li>好友填写你的邀请码参与答题后，双方均获得一次游戏机会</li>
       <li>每人每天邀请的人数没有限制</li>
     </ul>
@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import PopupModal from '../PopupModal';
 
 export default {
@@ -27,9 +28,12 @@ export default {
   components: {
     PopupModal
   },
+  computed: mapState([
+    'invitationCode'
+  ]),
   methods: {
-    back() {
-      this.$router.back();
+    goHome() {
+      this.$router.push('/');
     }
   }
 };

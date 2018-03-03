@@ -36,7 +36,8 @@ export default {
   methods: {
     playCountdown() {
       if (this.count === 3) {
-        clearInterval(this.timer);
+        clearInterval(this.interval);
+        this.$router.push({ path: '/' });
         return;
       }
       this.ready = true;
@@ -48,7 +49,7 @@ export default {
     }
   },
   mounted() {
-    this.timer = setInterval(() => {
+    this.interval = setInterval(() => {
       this.playCountdown();
     }, 1500);
   }

@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import CountdownTimer from '../CountdownTimer';
+import CountdownTimer from '../../components/CountdownTimer';
 
 export default {
   name: 'Quiz',
