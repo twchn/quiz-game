@@ -11,118 +11,28 @@
           <button>总榜</button>
         </nav>
         <div class="top-list">
-          <div class="top-list-box">
-            <img class="avatar" src="../../assets/avatar.jpg" alt="avatar">
-            <p class="user-name">用户一</p>
-            <p class="score">320分</p>
-          </div>
-          <div class="top-list-box">
-            <img class="avatar" src="../../assets/avatar.jpg" alt="avatar">
-            <p class="user-name">用户二</p>
-            <p class="score">320分</p>
-          </div>
-          <div class="top-list-box">
-            <img class="avatar" src="../../assets/avatar.jpg" alt="avatar">
-            <p class="user-name">用户三</p>
-            <p class="score">320分</p>
+          <div
+            class="top-list-box"
+            v-for="(item, index) in rankingList"
+            v-if="index <= 2"
+            :key="item.userId"
+          >
+            <img class="avatar" :src="item.headImgUrl" alt="avatar">
+            <p class="user-name">{{ item.nickname }}</p>
+            <p class="score">{{ item.score }}分</p>
           </div>
         </div>
         <div class="list">
-          <div class="list-box">
-            <span class="rank">4</span>
-            <img class="avatar" src="../../assets/avatar.jpg" alt="avatar">
-            <div class="user-name">手机用户123412342</div>
-            <div class="score">123分</div>
-          </div>
-          <div class="list-box">
-            <span class="rank">4</span>
-            <img class="avatar" src="../../assets/avatar.jpg" alt="avatar">
-            <div class="user-name">手机用户123412342</div>
-            <div class="score">123分</div>
-          </div>
-          <div class="list-box">
-            <span class="rank">4</span>
-            <img class="avatar" src="../../assets/avatar.jpg" alt="avatar">
-            <div class="user-name">手机用户123412342</div>
-            <div class="score">123分</div>
-          </div>
-          <div class="list-box">
-            <span class="rank">4</span>
-            <img class="avatar" src="../../assets/avatar.jpg" alt="avatar">
-            <div class="user-name">手机用户123412342</div>
-            <div class="score">123分</div>
-          </div>
-          <div class="list-box">
-            <span class="rank">4</span>
-            <img class="avatar" src="../../assets/avatar.jpg" alt="avatar">
-            <div class="user-name">手机用户123412342</div>
-            <div class="score">123分</div>
-          </div>
-          <div class="list-box">
-            <span class="rank">4</span>
-            <img class="avatar" src="../../assets/avatar.jpg" alt="avatar">
-            <div class="user-name">手机用户123412342</div>
-            <div class="score">123分</div>
-          </div>
-          <div class="list-box">
-            <span class="rank">4</span>
-            <img class="avatar" src="../../assets/avatar.jpg" alt="avatar">
-            <div class="user-name">手机用户123412342</div>
-            <div class="score">123分</div>
-          </div>
-          <div class="list-box">
-            <span class="rank">4</span>
-            <img class="avatar" src="../../assets/avatar.jpg" alt="avatar">
-            <div class="user-name">手机用户123412342</div>
-            <div class="score">123分</div>
-          </div>
-          <div class="list-box">
-            <span class="rank">4</span>
-            <img class="avatar" src="../../assets/avatar.jpg" alt="avatar">
-            <div class="user-name">手机用户123412342</div>
-            <div class="score">123分</div>
-          </div>
-          <div class="list-box">
-            <span class="rank">4</span>
-            <img class="avatar" src="../../assets/avatar.jpg" alt="avatar">
-            <div class="user-name">手机用户123412342</div>
-            <div class="score">123分</div>
-          </div>
-          <div class="list-box">
-            <span class="rank">4</span>
-            <img class="avatar" src="../../assets/avatar.jpg" alt="avatar">
-            <div class="user-name">手机用户123412342</div>
-            <div class="score">123分</div>
-          </div>
-          <div class="list-box">
-            <span class="rank">4</span>
-            <img class="avatar" src="../../assets/avatar.jpg" alt="avatar">
-            <div class="user-name">手机用户123412342</div>
-            <div class="score">123分</div>
-          </div>
-          <div class="list-box">
-            <span class="rank">4</span>
-            <img class="avatar" src="../../assets/avatar.jpg" alt="avatar">
-            <div class="user-name">手机用户123412342</div>
-            <div class="score">123分</div>
-          </div>
-          <div class="list-box">
-            <span class="rank">4</span>
-            <img class="avatar" src="../../assets/avatar.jpg" alt="avatar">
-            <div class="user-name">手机用户123412342</div>
-            <div class="score">123分</div>
-          </div>
-          <div class="list-box">
-            <span class="rank">4</span>
-            <img class="avatar" src="../../assets/avatar.jpg" alt="avatar">
-            <div class="user-name">手机用户123412342</div>
-            <div class="score">123分</div>
-          </div>
-          <div class="list-box">
-            <span class="rank">999</span>
-            <img class="avatar" src="../../assets/avatar.jpg" alt="avatar">
-            <div class="user-name">手机用户123412342</div>
-            <div class="score">123分</div>
+          <div
+            class="list-box"
+            v-for="(item, index) in rankingList"
+            v-if="index > 2"
+            :key="item.userId"
+          >
+            <span class="rank">{{ index + 1 }}</span>
+            <img class="avatar" :src="item.headImgUrl" alt="avatar">
+            <div class="user-name">{{ item.nickname }}</div>
+            <div class="score">{{ item.score }}分</div>
           </div>
         </div>
         <div class="self list">
@@ -139,12 +49,24 @@
 </template>
 
 <script>
+import { getRankingList } from '../../api';
+
 export default {
   name: 'RankingList',
+  data() {
+    return {
+      rankingList: []
+    };
+  },
   methods: {
     back() {
       this.$router.back();
     }
+  },
+  created() {
+    getRankingList().then(({ data }) => {
+      this.rankingList = data.rankingList;
+    });
   }
 };
 </script>

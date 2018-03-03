@@ -72,20 +72,29 @@ $themeColor: #3c1860;
       justify-content: space-around;
       align-items: flex-end;
       margin-bottom: 10px;
+      width: 96%;
+      padding: 0 2%;
       .top-list-box {
         display: flex;
         flex-direction: column;
         align-items: center;
         color: #fff;
         position: relative;
+        width: 32%;
         .avatar {
           width: 60px;
           height: 60px;
           border-radius: 30px;
         }
         .user-name {
+          width: 100%;
           font-size: 14px;
           margin: 12px 0 6px;
+          text-align: center;
+          word-break:keep-all;
+          white-space:nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
         .score {
           display: flex;
@@ -113,7 +122,7 @@ $themeColor: #3c1860;
             border-radius: 40px;
           }
           &::before {
-            left: 20px;
+            //left: 20px;
             width: 40px;
             height: 60px;
             background: url("../../assets/rank/first.png") no-repeat center center;
@@ -124,7 +133,7 @@ $themeColor: #3c1860;
         &:nth-child(2) {
           order: 1;
           &::before {
-            left: 10px;
+            //left: 10px;
             width: 40px;
             height: 60px;
             background: url("../../assets/rank/second.png") no-repeat center center;
@@ -135,7 +144,7 @@ $themeColor: #3c1860;
         &:nth-child(3) {
           order: 3;
           &::before {
-            left: 10px;
+            //left: 10px;
             width: 40px;
             height: 60px;
             background: url("../../assets/rank/third.png") no-repeat center center;
