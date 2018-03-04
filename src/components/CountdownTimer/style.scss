@@ -9,27 +9,27 @@
   align-items: center;
   .semicircle {
     position: absolute;
-    top: -1px;
-    width: calc(50% + 1px);
-    height: calc(100% + 2px);
+    top: 0;
+    width: 50%;
+    height: 100%;
   }
   .left {
-    left: -1px;
+    left: 0;
     border-top-left-radius: 100% 50%;
     border-bottom-left-radius: 100% 50%;
     background-color: #fff;
     transform-origin: 100% 50%;
   }
   .right {
-    right: -1px;
+    right: 0;
     border-top-right-radius: 100% 50%;
     border-bottom-right-radius: 100% 50%;
     background-color: #fff;
     transform-origin: 0 50%;
   }
   .text {
-    width: calc(100% - 6px);
-    height: calc(100% - 6px);
+    width: calc(100% - 8px);
+    height: calc(100% - 8px);
     border-radius: 50%;
     display: flex;
     align-items: center;

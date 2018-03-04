@@ -4,7 +4,7 @@ const state = {
   headImgUrl: '',
   invitationCode: '',
   gameNumber: [0, 0],
-  practiceNumber: 3,
+  practiceNumber: 0,
   prize: 0,
   score: 0,
   rank: 0

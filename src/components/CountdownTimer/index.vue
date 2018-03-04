@@ -21,7 +21,7 @@ export default {
   props: {
     rotateDeg: {
       type: Number,
-      default: 10
+      default: 0
     },
     text: String
   },

@@ -58,6 +58,7 @@ export default {
         .then((res) => {
           if (res.data.state) {
             this.$emit('showPromptBox', '邀请成功！');
+            this.$store.commit('INVITE');
             this.goHome();
           } else {
             this.$emit('showPromptBox', '邀请码无效！');

@@ -106,7 +106,7 @@ export default {
   },
   methods: {
     playGame() {
-      if (!this.gameNumber[0]) {
+      if (this.gameNumber[0] <= 0) {
         this.showPromptBox('游戏次数不够，尝试填写邀请码吧！');
         return;
       }
@@ -124,7 +124,7 @@ export default {
         });
     },
     practice() {
-      if (!this.practiceNumber) {
+      if (this.practiceNumber <= 0) {
         this.showPromptBox('今日练习次数已用完，试试游戏模式吧！');
         return;
       }
@@ -176,8 +176,8 @@ export default {
     'openid',
     'headImgUrl',
     'gameNumber',
-    'prize',
-    'practiceNumber'
+    'practiceNumber',
+    'prize'
   ]),
   watch: {
     $route() {

@@ -1,5 +1,5 @@
 <template>
-  <main class="main" @click="playCountdown">
+  <main class="main">
     <transition name="scale-fade">
       <img
         v-if="ready"

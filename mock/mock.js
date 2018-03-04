@@ -2,6 +2,9 @@ import Mock from 'mockjs';
 
 /* 请求类型/type必须小写 */
 
+const gameNumber = [2, 3];
+let practiceNumber = 1;
+
 // 用户信息
 Mock.mock('/userinfo', 'get', {
   openid: '@id',
@@ -9,8 +12,8 @@ Mock.mock('/userinfo', 'get', {
   headImgUrl: 'https://placeimg.com/64/64/people',
   invitationCode: '123654',
   score: '@natural(0, 999)',
-  gameNumber: [2, 3],
-  practiceNumber: 0,
+  gameNumber,
+  practiceNumber,
   prize: 1.5,
   rank: 99,
   trailer: {
@@ -32,6 +35,47 @@ Mock.mock('/rank', 'get', {
       nickname: '@name',
       headImgUrl: 'https://placeimg.com/64/64/people@word',
       score: '@natural(0, 999)'
+    }
+  ]
+});
+
+Mock.mock('/play', 'post', () => {
+  const state = { state: false };
+  if (gameNumber[0] > 0) {
+    gameNumber[0] -= 1;
+    state.state = true;
+  }
+  return state;
+});
+
+Mock.mock('/practice', 'post', () => {
+  const state = { state: false };
+  if (practiceNumber > 0) {
+    practiceNumber -= 1;
+    state.state = true;
+  }
+  return state;
+});
+
+Mock.mock('/activity', 'post', () => ({
+  state: true
+}));
+
+Mock.mock('/invite', 'post', () => {
+  gameNumber[0] += 1;
+  gameNumber[1] += 1;
+  return {
+    state: true
+  };
+});
+
+Mock.mock('/question', 'post', {
+  questionId: '@id',
+  questionTitle: '@title',
+  'questionOptions|4': [
+    {
+      content: '@word',
+      rate: '@natural(0, 100)%'
     }
   ]
 });

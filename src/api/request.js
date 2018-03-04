@@ -11,7 +11,7 @@ const request = (method = 'GET', url = '', data = {}) => {
       });
       break;
     default:
-      result = axios(method, url, data);
+      result = axios({ method, url, data });
       break;
   }
   return result;

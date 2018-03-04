@@ -17,6 +17,10 @@ const mutations = {
   },
   [types.PRACTICE](state) {
     state.practiceNumber -= 1;
+  },
+  [types.INVITE](state) {
+    state.gameNumber[0] += 1;
+    state.gameNumber[1] += 1;
   }
 };
 

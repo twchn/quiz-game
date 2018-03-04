@@ -23,3 +23,7 @@ export function beginActivity({ openid }) {
 export function invite({ openid, code }) {
   return request('post', '/invite', { openid, code });
 }
+
+export function getQuestion({ openid, mode }) {
+  return request('post', '/question', { openid, mode });
+}
