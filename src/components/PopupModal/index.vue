@@ -1,6 +1,6 @@
 <template>
   <transition name="slide-fade">
-    <div class="modal-container" @click.self="back">
+    <div class="modal-container" @click.self="goHome">
       <div class="modal">
         <slot></slot>
       </div>

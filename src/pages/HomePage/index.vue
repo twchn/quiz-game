@@ -15,7 +15,7 @@
     </router-link>
     <!--中间的信息栏-->
     <section class="info-panel">
-      <img class="avatar" :src="headImgUrl" alt="头像">
+      <img class="avatar" v-lazy="headImgUrl" alt="头像">
       <div class="text-info">
         <div>
           <p class="title">剩余游戏次数</p>

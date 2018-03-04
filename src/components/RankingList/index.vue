@@ -17,7 +17,7 @@
             v-if="index <= 2"
             :key="item.userId"
           >
-            <img class="avatar" :src="item.headImgUrl" alt="avatar">
+            <img class="avatar" v-lazy="item.headImgUrl" alt="avatar">
             <p class="user-name">{{ item.nickname }}</p>
             <p class="score">{{ item.score }}分</p>
           </div>
@@ -30,7 +30,7 @@
             :key="item.userId"
           >
             <span class="rank">{{ index + 1 }}</span>
-            <img class="avatar" :src="item.headImgUrl" alt="avatar">
+            <img class="avatar" v-lazy="item.headImgUrl" alt="avatar">
             <div class="user-name">{{ item.nickname }}</div>
             <div class="score">{{ item.score }}分</div>
           </div>

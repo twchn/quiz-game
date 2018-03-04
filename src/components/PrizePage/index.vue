@@ -2,7 +2,7 @@
   <PopupModal>
     <img class="close-btn" @click="goHome" src="../../assets/icon/close.svg" alt="close">
     <div class="prize-container">
-      <img class="avatar" :src="headImgUrl" alt="avatar">
+      <img class="avatar" v-lazy="headImgUrl" alt="avatar">
       <p class="user-name">{{ nickname }}</p>
       <p class="text">获得奖金</p>
       <p class="money">&yen;&nbsp;{{ prize }}</p>
