@@ -1,6 +1,6 @@
-# subsidize-quiz
+# quiz-game
 
-> A quiz game
+> A question-and-answer game
 
 ## Build Setup
 
