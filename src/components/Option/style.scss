@@ -1,0 +1,32 @@
+li {
+  margin: 18px 0;
+  padding: 0;
+  width: 100%;
+  height: 46px;
+  line-height: 46px;
+  border-radius: 23px;
+  //border: 1px solid #dadada;
+  text-align: left;
+  text-indent: 23px;
+  color: #444;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all .8s;
+  background-size: 0 100%;
+  box-shadow: 0 0 2px 3px rgba(200, 200, 200, .1);
+  .rate {
+    font-size: 14px;
+    font-weight: 500;
+    color: #c9c9c9;
+    margin-right: 12px;
+    float: right;
+  }
+}
+.wrong {
+  background: linear-gradient(to left, #f84c7f, #fec1d3) no-repeat;
+}
+.right {
+  color: #fff;
+  background: linear-gradient(to left, #439421, #b0e94f) no-repeat;
+  background-size: 100% 100%;
+}
