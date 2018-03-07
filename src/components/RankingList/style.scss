@@ -1,7 +1,7 @@
 $themeColor: #3c1860;
 
 .slide-fade-enter-active, .slide-fade-leave-active {
-  transition: all 0.2s;
+  transition: all .2s;
 }
 .slide-fade-enter, .slide-fade-leave-to {
   transform: rotateY(45deg);

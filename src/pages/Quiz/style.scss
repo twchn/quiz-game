@@ -25,11 +25,52 @@
     box-sizing: border-box;
     border: 5px solid #fff;
   }
+  svg {
+    margin-top: -32px;
+    width: 54px;
+    height: 54px;
+    display: block;
+    border-radius: 50%;
+    box-sizing: border-box;
+    border: 5px solid #fff;
+    z-index: 1;
+  }
+  .path {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 0;
+  }
+  .circle {
+    animation: dash .9s ease-in-out;
+  }
+  .line {
+    stroke-dashoffset: 1000;
+    animation: dash .9s .35s ease-in-out forwards;
+  }
+  .check {
+    stroke-dashoffset: -100;
+    animation: dash-check .9s .35s ease-in-out forwards;
+  }
+  @keyframes dash {
+    0% {
+      stroke-dashoffset: 1000;
+    }
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+  @keyframes dash-check {
+    0% {
+      stroke-dashoffset: -100;
+    }
+    100% {
+      stroke-dashoffset: 900;
+    }
+  }
   .question {
-    margin: 20px 0 10px;
+    margin: 32px 0 10px;
     width: 75%;
     text-align: center;
-    color: #4f4f4f;
+    color: #444;
     font-size: 18px;
     line-height: 24px;
     font-weight: 600;
@@ -39,44 +80,25 @@
     margin: 0 auto;
     padding: 0;
     list-style: none;
-    li {
-      margin: 20px 0;
-      padding: 0;
-      width: 100%;
-      height: 44px;
-      line-height: 44px;
-      border-radius: 22px;
-      border: 1px solid #dadada;
-      text-align: center;
-      color: #333;
-      background-color: #f8f8f8;
-    }
-    .wrong {
-      background: linear-gradient(to right, #ff9608, #f7ce4d) no-repeat;
-      background-size: 100% 100%;
-    }
-    .right {
-      background: linear-gradient(to right, #439421, #b0e94f);
-    }
     .slide-enter-active {
       &:nth-child(1) {
         transition: all .8s;
       }
       &:nth-child(2) {
-        transition: all .8s .1s;
-      }
-      &:nth-child(3) {
         transition: all .8s .2s;
       }
+      &:nth-child(3) {
+        transition: all .8s .4s;
+      }
       &:nth-child(4) {
-        transition: all .8s .3s;
+        transition: all .8s .6s;
       }
       &:nth-child(5) {
-        transition: all .8s .4s;
+        transition: all .8s .8s;
       }
     }
     .slide-leave-active {
-      transition: all 0.5s;
+      transition: all .5s;
     }
     .slide-enter {
       opacity: 0;
@@ -90,7 +112,7 @@
       transition: all 1s;
   }
   .slide-leave-active {
-    transition: all 0.5s;
+    transition: all .5s;
   }
   .slide-enter {
     opacity: 0;

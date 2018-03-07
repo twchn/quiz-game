@@ -15,10 +15,10 @@
     transition: all 1s;
   }
  .scale-fade-leave-active {
-   transition: all 0.5s;
+   transition: all .5s;
  }
   .scale-fade-enter {
-    transform: scale(0.3);
+    transform: scale(.3);
     opacity: 0;
   }
   .scale-fade-leave-to {

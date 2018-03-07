@@ -11,7 +11,12 @@
       :style="rightStyle"
     >
     </div>
-    <div class="text">{{text}}</div>
+    <div
+      class="text"
+      :class="{ msg: text === 0 }"
+    >
+      {{ text === 0 ? '未作答' : text }}
+    </div>
   </div>
 </template>
 
@@ -23,7 +28,7 @@ export default {
       type: Number,
       default: 0
     },
-    text: String
+    text: Number
   },
   data() {
     return {};
