@@ -34,9 +34,7 @@ export default {
   },
   created() {
     // 判断是否需要滚动
-    // if (this.messages.length <= 1) {
-    //   return;
-    // }
+    // if (this.messages.length <= 1) return;
     // 将定时器赋给this实例方便清除
     this.interval = setInterval(() => {
       this.scroll();

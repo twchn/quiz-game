@@ -90,6 +90,7 @@
         {{ item.content }}
       </Option>
     </ul>
+    <audio ref="timeout" src="../../assets/audio/timeout.wav">浏览器版本过低，请尽快升级</audio>
   </main>
 </template>
 
@@ -138,6 +139,9 @@ export default {
     countdown() {
       clearInterval(this.countdownInterval);
       this.countdownInterval = setInterval(() => {
+        if (this.restTime === 1 && !this.mute) {
+          this.$refs.timeout.play();
+        }
         if (this.restTime === 0) {
           this.optionsInfo = [
             { selected: true },
@@ -164,9 +168,7 @@ export default {
     },
     // 判断选择是否正确
     judgeResult(index) {
-      if (this.isAnswered) {
-        return;
-      }
+      if (this.isAnswered) return;
       if (this.question.questionTitle.length % this.question.questionOptions.length === index) {
         // 是否作答和是否答对同步更新
         this.isRight = true;
@@ -199,7 +201,8 @@ export default {
     }
   },
   computed: mapState([
-    'openid'
+    'openid',
+    'mute'
   ]),
   components: {
     CountdownTimer,

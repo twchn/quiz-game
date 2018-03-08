@@ -26,7 +26,9 @@ li {
   background: linear-gradient(to left, #f84c7f, #fec1d3) no-repeat;
 }
 .right {
-  color: #fff;
   background: linear-gradient(to left, #439421, #b0e94f) no-repeat;
   background-size: 100% 100%;
+  .rate {
+    color: #fff;
+  }
 }

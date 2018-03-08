@@ -48,9 +48,7 @@ export default {
       this.$router.push('/');
     },
     submitCode() {
-      if (this.filledCode.length !== 6) {
-        return;
-      }
+      if (this.filledCode.length !== 6) return;
       invite({
         code: this.filledCode,
         openid: this.$store.state.openid

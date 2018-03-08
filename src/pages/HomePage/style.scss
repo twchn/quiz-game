@@ -4,6 +4,14 @@
   background: url("../../assets/background.png") no-repeat center center;
   background-size: 100% 100%;
   padding-top: 31vh;
+  // 音乐按钮
+  .music {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 16px;
+    right: 10px;
+  }
   // 头部按钮
   .head-btn {
     position: absolute;

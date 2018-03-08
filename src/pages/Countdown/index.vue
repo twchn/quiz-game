@@ -8,15 +8,15 @@
         alt="countdown"
       >
     </transition>
-    <audio :src="audioSrc" ref="audio">浏览器版本过低，请尽快升级</audio>
+    <audio src="../../assets/audio/countdown.mp3" ref="audio">浏览器版本过低，请尽快升级</audio>
   </main>
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import img1 from '../../assets/countdown/1.png';
 import img2 from '../../assets/countdown/2.png';
 import img3 from '../../assets/countdown/3.png';
-import audioSrc from '../../assets/countdown/countdown.mp3';
 
 export default {
   name: 'Countdown',
@@ -24,24 +24,28 @@ export default {
     return {
       ready: false,
       count: 0,
-      imgs: [img3, img2, img1],
-      audioSrc
+      imgs: [img3, img2, img1]
     };
   },
   computed: {
     imgSrc() {
       return this.imgs[this.count];
-    }
+    },
+    ...mapState([
+      'mute'
+    ])
   },
   methods: {
     playCountdown() {
       if (this.count === 3) {
         clearInterval(this.interval);
-        this.$router.push({ path: '/' });
+        this.$router.push({ path: '/quiz' });
         return;
       }
       this.ready = true;
-      this.$refs.audio.play();
+      if (!this.mute) {
+        this.$refs.audio.play();
+      }
       setTimeout(() => {
         this.ready = false;
         this.count += 1;

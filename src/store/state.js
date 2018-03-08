@@ -7,7 +7,8 @@ const state = {
   practiceNumber: 0,
   prize: 0,
   score: 0,
-  rank: 0
+  rank: 0,
+  mute: false
 };
 
 export default state;

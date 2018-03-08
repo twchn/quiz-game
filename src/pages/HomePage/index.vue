@@ -7,6 +7,12 @@
   <PromptBox v-show="showPrompt" :promptMessage="promptMessage" />
   <main class="main" :class="{ blur: whetherBlur}">
     <div class="mask"></div>
+    <img
+      @click="switchBackgroundMusic"
+      class="music"
+      :src="musicIconSrc"
+      alt="music"
+    />
     <router-link to="/invitation">
       <button class="invite-code head-btn">填写邀请码</button>
     </router-link>
@@ -90,6 +96,8 @@ import Icon from 'vue-awesome/components/Icon';
 import ScrollMessage from '../../components/ScrollMessage';
 import PromptBox from '../../components/PromptBox';
 import { getUserInfo, beginPlay, beginPractice, beginActivity } from '../../api';
+import musicIcon from '../../assets/icon/background-music.svg';
+import muteMusicIcon from '../../assets/icon/background-music-mute.svg';
 
 export default {
   name: 'HomePage',
@@ -155,9 +163,7 @@ export default {
         });
     },
     showPromptBox(msg) {
-      if (msg === '') {
-        return;
-      }
+      if (msg === '') return;
       this.promptMessage = msg;
       this.showPrompt = true;
       clearTimeout(this.timeout);
@@ -168,17 +174,34 @@ export default {
     judgeBlur() {
       this.whetherBlur = ['/invitation', '/share', '/prize'].indexOf(this.$route.path) > -1;
     },
+    switchBackgroundMusic() {
+      this.switchMusic();
+      // 如果静音
+      if (this.mute) {
+        this.showPromptBox('音效已关闭');
+      } else {
+        this.showPromptBox('音效已开启');
+      }
+    },
     ...mapMutations({
-      setUserInfo: 'SET_USER_INFO'
+      getCache: 'GET_CACHE',
+      setUserInfo: 'SET_USER_INFO',
+      switchMusic: 'SWITCH_MUSIC'
     })
   },
-  computed: mapState([
-    'openid',
-    'headImgUrl',
-    'gameNumber',
-    'practiceNumber',
-    'prize'
-  ]),
+  computed: {
+    musicIconSrc() {
+      return this.mute ? muteMusicIcon : musicIcon;
+    },
+    ...mapState([
+      'openid',
+      'headImgUrl',
+      'gameNumber',
+      'practiceNumber',
+      'prize',
+      'mute'
+    ])
+  },
   watch: {
     $route() {
       this.judgeBlur();
@@ -190,6 +213,8 @@ export default {
     PromptBox
   },
   created() {
+    // 获取缓存
+    this.getCache();
     // 避免刷新后失去背景模糊
     this.judgeBlur();
     getUserInfo().then(({ data }) => {

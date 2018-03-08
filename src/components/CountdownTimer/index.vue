@@ -30,9 +30,6 @@ export default {
     },
     text: Number
   },
-  data() {
-    return {};
-  },
   computed: {
     lessThanFive() {
       return this.rotateDeg < 180;

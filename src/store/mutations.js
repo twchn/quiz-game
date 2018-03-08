@@ -1,6 +1,10 @@
 import * as types from './mutation-types';
+import { setLocal, getLocal } from '../utils/cache';
 
 const mutations = {
+  [types.GET_CACHE](state) {
+    state.mute = getLocal('mute');
+  },
   [types.SET_USER_INFO](state, userinfo) {
     state.openid = userinfo.openid;
     state.nickname = userinfo.nickname;
@@ -21,6 +25,10 @@ const mutations = {
   [types.INVITE](state) {
     state.gameNumber[0] += 1;
     state.gameNumber[1] += 1;
+  },
+  [types.SWITCH_MUSIC](state) {
+    state.mute = !state.mute;
+    setLocal('mute', state.mute);
   }
 };
 
