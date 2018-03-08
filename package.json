@@ -1,8 +1,7 @@
 {
-  "name": "subsidize-quiz",
+  "name": "quiz-game",
   "version": "1.0.0",
-  "description": "A quiz game",
-  "author": "taoweicn <twchn@live.com>",
+  "description": "A question-and-answer game",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
