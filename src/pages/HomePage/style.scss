@@ -85,37 +85,8 @@
         color: #000;
       }
     }
-    // 开始按钮
-    .begin-btn {
-      margin: 7px 0 13px;
-      width: 150px;
-      height: 32px;
-      position: relative;
-      border-style: none;
-      background-color: #fff;
-      outline: none;
-      .border {
-        position: absolute;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        line-height: 30px;
-        border: .1em solid #00152c;
-        border-radius: 15px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        font-size: 14px;
-      }
-      .border:nth-child(1) {
-        top: 4px;
-        background-color: #4866f1;
-      }
-      .border:nth-child(2) {
-        top: 0;
-        background-color: #fff;
-      }
+    // 普通模式按钮
+    .normal-btn {
       .begin {
         width: 16px;
         height: 16px;
@@ -124,25 +95,22 @@
     }
     // 练习模式按钮
     .practice-btn {
-      .border {
+      .text {
         font-size: 12px;
       }
     }
     // 限时答题按钮
-    .limit-time-btn {
-      .border {
+    .activity-btn {
+      /deep/ .border {
         width: 90%;
         padding: 0 5%;
         justify-content: space-around;
         color: #eee;
       }
-      .border:nth-child(2) {
-        background-color: #198cf9;
-      }
-      .limit-time-img {
+      .activity-img {
         height: 100%;
       }
-      .limit-time-intro {
+      .activity-intro {
         display: flex;
         flex-direction: column;
         line-height: 15px;

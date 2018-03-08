@@ -3,7 +3,7 @@ import { setLocal, getLocal } from '../utils/cache';
 
 const mutations = {
   [types.GET_CACHE](state) {
-    state.mute = getLocal('mute');
+    state.mute = getLocal('mute') || false;
   },
   [types.SET_USER_INFO](state, userinfo) {
     state.openid = userinfo.openid;

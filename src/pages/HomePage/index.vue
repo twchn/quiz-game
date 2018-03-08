@@ -44,29 +44,30 @@
         </div>
       </div>
       <!--三个按钮-->
-      <button class="begin-btn practice-btn" @click="practice">
-        <span class="border"></span>
-        <span class="border">
-          练习模式 (每天三次机会)
+      <Button
+        class="practice-btn"
+        @click.native="practice"
+      >
+        <span class="text">练习模式 (每天三次机会)</span>
+      </Button>
+      <Button
+        class="normal-btn"
+        @click.native="playGame"
+      >
+        <img class="begin" src="../../assets/icon/begin.svg" alt="begin">
+        <span class="text">开始答题</span>
+      </Button>
+      <Button
+        class="activity-btn"
+        @click.native="playActivity"
+        :propsStyle="{ backgroundColor: '#198cf9' }"
+      >
+        <img class="activity-img" src="../../assets/activity.png" alt="begin">
+        <span class="activity-intro">
+          <span>定期开启</span>
+          <span>十分钟限时答题</span>
         </span>
-      </button>
-      <button class="begin-btn" @click="playGame">
-        <span class="border"></span>
-        <span class="border">
-          <img class="begin" src="../../assets/icon/begin.svg" alt="begin">
-          开始答题
-        </span>
-      </button>
-      <button class="begin-btn limit-time-btn" @click="playActivity">
-        <span class="border"></span>
-        <span class="border">
-          <img class="limit-time-img" src="../../assets/limit-time-answer.png" alt="begin">
-          <span class="limit-time-intro">
-            <span>定期开启</span>
-            <span>十分钟限时答题</span>
-          </span>
-        </span>
-      </button>
+      </Button>
       <!--活动预告-->
       <div class="trailer">
         <div class="title">限时答题活动预告</div>
@@ -95,6 +96,7 @@ import { mapState, mapMutations } from 'vuex';
 import Icon from 'vue-awesome/components/Icon';
 import ScrollMessage from '../../components/ScrollMessage';
 import PromptBox from '../../components/PromptBox';
+import Button from '../../components/Button';
 import { getUserInfo, beginPlay, beginPractice, beginActivity } from '../../api';
 import musicIcon from '../../assets/icon/background-music.svg';
 import muteMusicIcon from '../../assets/icon/background-music-mute.svg';
@@ -210,7 +212,8 @@ export default {
   components: {
     Icon,
     ScrollMessage,
-    PromptBox
+    PromptBox,
+    Button
   },
   created() {
     // 获取缓存

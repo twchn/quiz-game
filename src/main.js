@@ -4,6 +4,7 @@ import Vue from 'vue';
 import VueLazyload from 'vue-lazyload';
 import 'normalize.css';
 import 'vue-awesome/icons/question-circle';
+import 'vue-awesome/icons/angle-left';
 import 'vue-awesome/icons/angle-right';
 import App from './App';
 import router from './router';

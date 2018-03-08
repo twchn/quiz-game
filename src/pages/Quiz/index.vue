@@ -2,6 +2,7 @@
   <main class="main">
     <header class="header"></header>
     <svg
+      class="animation"
       v-if="isAnswered && isRight"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
@@ -28,6 +29,7 @@
       </polyline>
     </svg>
     <svg
+      class="animation"
       v-else-if="isAnswered"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
@@ -90,14 +92,37 @@
         {{ item.content }}
       </Option>
     </ul>
+    <div class="final-result">
+      <Icon class="back-btn" name="angle-left" @click.native="goHome" />
+      <img class="result-img" src="../../assets/icon/fail.svg" alt="result">
+      <h1 class="title">智者千虑，必有一失</h1>
+      <p class="text">你败在了第6题，继续努力！目前已打败66.66%的人,已经很棒了！</p>
+      <Button
+        :propsStyle="{ backgroundColor: '#198cf9', color: '#fff' }"
+      >
+        再玩一局
+      </Button>
+      <Button
+        :propsStyle="{ backgroundColor: '#fd5b96', color: '#fff' }"
+      >
+        邀请好友得复活卡
+      </Button>
+      <router-link to="/prize" class="tip">
+        去查看我的奖金&nbsp;
+        <Icon name="angle-right" />
+        <Icon name="angle-right" />
+      </router-link>
+    </div>
     <audio ref="timeout" src="../../assets/audio/timeout.wav">浏览器版本过低，请尽快升级</audio>
   </main>
 </template>
 
 <script>
 import { mapState } from 'vuex';
+import Icon from 'vue-awesome/components/Icon';
 import CountdownTimer from '../../components/CountdownTimer';
 import Option from '../../components/Option';
+import Button from '../../components/Button';
 import { getQuestion } from '../../api';
 
 export default {
@@ -190,6 +215,9 @@ export default {
         // 答错则暂停出题和倒计时
         clearInterval(this.countdownInterval);
       }
+    },
+    goHome() {
+      this.$router.push('/');
     }
   },
   created() {
@@ -206,7 +234,9 @@ export default {
   ]),
   components: {
     CountdownTimer,
-    Option
+    Option,
+    Button,
+    Icon
   }
 };
 </script>

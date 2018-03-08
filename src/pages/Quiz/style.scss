@@ -25,7 +25,7 @@
     box-sizing: border-box;
     border: 5px solid #fff;
   }
-  svg {
+  .animation {
     margin-top: -32px;
     width: 54px;
     height: 54px;
@@ -66,6 +66,7 @@
       stroke-dashoffset: 900;
     }
   }
+  // 题目
   .question {
     margin: 32px 0 10px;
     width: 75%;
@@ -75,11 +76,13 @@
     line-height: 24px;
     font-weight: 600;
   }
+  // 选项
   .options {
     width: 60%;
     margin: 0 auto;
     padding: 0;
     list-style: none;
+    // 选项进入效果
     .slide-enter-active {
       &:nth-child(1) {
         transition: all .8s;
@@ -108,6 +111,7 @@
       opacity: 0;
     }
   }
+  // 题目进入动画
   .slide-enter-active {
       transition: all 1s;
   }
@@ -120,5 +124,52 @@
   }
   .slide-leave {
     opacity: 0;
+  }
+  .final-result {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    // 对应倒计时z-index为1
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .back-btn {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      width: 28px;
+      height: 28px;
+    }
+    .result-img {
+      margin-top: 20%;
+      width: 140px;
+      height: 140px;
+    }
+    .title {
+      width: 60%;
+      margin: .67em 20%;
+      font-size: 18px;
+      text-align: center;
+    }
+    .text {
+      color: #333;
+      width: 80%;
+      margin: 10px 10% 20px;
+      font-size: 14px;
+      line-height: 20px;
+      text-align: center;
+    }
+    .tip {
+      margin-top: 16px;
+      font-size: 12px;
+      color: #062fa1;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
   }
 }
