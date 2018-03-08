@@ -1,0 +1,19 @@
+<template>
+  <button class="begin-btn">
+    <span class="border"></span>
+    <span class="border" :style="propsStyle">
+      <slot></slot>
+    </span>
+  </button>
+</template>
+
+<script>
+export default {
+  name: 'Button',
+  props: {
+    propsStyle: Object
+  }
+};
+</script>
+
+<style lang="scss" scoped src="./style.scss"></style>
