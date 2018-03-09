@@ -97,6 +97,7 @@ import Icon from 'vue-awesome/components/Icon';
 import ScrollMessage from '../../components/ScrollMessage';
 import PromptBox from '../../components/PromptBox';
 import Button from '../../components/Button';
+import { GET_CACHE, SET_USER_INFO, SWITCH_MUSIC, PLAY_GAME, PRACTICE, PLAY_ACTIVITY } from '../../store/mutation-types';
 import { getUserInfo, beginPlay, beginPractice, beginActivity } from '../../api';
 import musicIcon from '../../assets/icon/background-music.svg';
 import muteMusicIcon from '../../assets/icon/background-music-mute.svg';
@@ -123,7 +124,7 @@ export default {
       beginPlay({ openid: this.openid })
         .then((res) => {
           if (res.data.state) {
-            this.$store.commit('PLAY_GAME');
+            this.commitPlayGame();
             this.$router.push('/countdown');
           } else {
             this.showPromptBox('抱歉，暂时无法答题');
@@ -141,7 +142,7 @@ export default {
       beginPractice({ openid: this.openid })
         .then((res) => {
           if (res.data.state) {
-            this.$store.commit('PRACTICE');
+            this.commitPractice();
             this.$router.push('/countdown');
           } else {
             this.showPromptBox('抱歉，暂时无法答题');
@@ -155,6 +156,7 @@ export default {
       beginActivity({ openid: this.openid })
         .then((res) => {
           if (res.data.state) {
+            this.commitPlayActivity();
             this.$router.push('/countdown');
           } else {
             this.showPromptBox('抱歉，暂时无法答题');
@@ -186,9 +188,12 @@ export default {
       }
     },
     ...mapMutations({
-      getCache: 'GET_CACHE',
-      setUserInfo: 'SET_USER_INFO',
-      switchMusic: 'SWITCH_MUSIC'
+      getCache: GET_CACHE,
+      setUserInfo: SET_USER_INFO,
+      switchMusic: SWITCH_MUSIC,
+      commitPlayGame: PLAY_GAME,
+      commitPractice: PRACTICE,
+      commitPlayActivity: PLAY_ACTIVITY
     })
   },
   computed: {
@@ -222,9 +227,6 @@ export default {
     this.judgeBlur();
     getUserInfo().then(({ data }) => {
       this.setUserInfo(data);
-      // this.headImgUrl = data.headImgUrl;
-      // this.gameNumber = data.gameNumber;
-      // this.prize = data.prize.toFixed(2);
       this.messages = data.messages;
       this.trailerPrize = data.trailer.prize;
       const trailerTime = new Date(data.trailer.time);

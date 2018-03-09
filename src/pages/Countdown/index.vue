@@ -32,14 +32,16 @@ export default {
       return this.imgs[this.count];
     },
     ...mapState([
-      'mute'
+      'mute',
+      'gameMode'
     ])
   },
   methods: {
     playCountdown() {
       if (this.count === 3) {
         clearInterval(this.interval);
-        this.$router.push({ path: '/quiz' });
+        // 使路由在quiz页返回直接跳到首页
+        this.$router.replace('/quiz');
         return;
       }
       this.ready = true;
@@ -52,10 +54,20 @@ export default {
       }, 1000);
     }
   },
-  mounted() {
-    this.interval = setInterval(() => {
-      this.playCountdown();
-    }, 1500);
+  created() {
+    // 避免直接输入url进入
+    if (!this.gameMode) {
+      this.$router.push('/');
+      return;
+    }
+    this.$nextTick(() => {
+      this.interval = setInterval(() => {
+        this.playCountdown();
+      }, 1500);
+    });
+  },
+  beforeDestroy() {
+    clearInterval(this.interval);
   }
 };
 </script>

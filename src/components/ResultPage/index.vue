@@ -1,27 +1,32 @@
 <template>
-  <div class="result-page">
-    <Icon class="back-btn" name="angle-left" @click.native="goHome" />
-    <img class="result-img" :src="iconSrc" alt="result">
-    <h1 class="title">{{ title }}</h1>
-    <p class="text">{{ message }}</p>
-    <Button
-      :propsStyle="{ backgroundColor: '#198cf9', color: '#fff' }"
-    >
-      再玩一局
-    </Button>
-    <Button
-      :propsStyle="{ backgroundColor: '#fd5b96', color: '#fff' }"
-    >
-      <router-link to="/share" tag="span">
-        邀请好友
+  <transition name="slide-up">
+    <div class="result-page">
+      <img src="../../assets/icon/close.svg" class="back-btn" @click="goHome" />
+      <img class="result-img" :src="iconSrc" alt="result">
+      <h1 class="title">{{ title }}</h1>
+      <p class="text">
+        {{ text + '本场分数：' }}
+        <span class="score">{{ score }}</span>
+      </p>
+      <Button
+        :propsStyle="{ backgroundColor: '#198cf9', color: '#fff' }"
+      >
+        再玩一局
+      </Button>
+      <Button
+        :propsStyle="{ backgroundColor: '#fd5b96', color: '#fff' }"
+      >
+        <router-link to="/share" tag="span">
+          邀请好友
+        </router-link>
+      </Button>
+      <router-link to="/prize" class="tip">
+        去查看我的奖金&nbsp;
+        <Icon name="angle-right" />
+        <Icon name="angle-right" />
       </router-link>
-    </Button>
-    <router-link to="/prize" class="tip">
-      去查看我的奖金&nbsp;
-      <Icon name="angle-right" />
-      <Icon name="angle-right" />
-    </router-link>
-  </div>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -39,7 +44,11 @@ export default {
   props: {
     result: Boolean, // true代表成功，false代表失败
     title: String,
-    message: String
+    text: String,
+    score: {
+      type: Number,
+      require: true
+    }
   },
   computed: {
     iconSrc() {

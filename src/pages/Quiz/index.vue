@@ -93,16 +93,19 @@
       </Option>
     </ul>
     <ResultPage
-      :result="true"
-      title="智者千虑，必有一失"
-      message="你败在了第6题，继续努力！目前已打败66.66%的人,已经很棒了！"
+      v-if="isEnd"
+      :result="isRight"
+      :title="showMessage.title"
+      :text="showMessage.text"
+      :score="totalScore"
     />
     <audio ref="timeout" src="../../assets/audio/timeout.wav">浏览器版本过低，请尽快升级</audio>
   </main>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
+import { END_GAME } from '../../store/mutation-types';
 import CountdownTimer from '../../components/CountdownTimer';
 import Option from '../../components/Option';
 import ResultPage from '../../components/ResultPage';
@@ -118,15 +121,53 @@ export default {
         questionOptions: [],
         questionId: ''
       },
+      currentQuestion: 0, // 当前第几题
       totalTime: 10, // 总共答题时间
       restTime: 10, // 剩余答题时间
       isAnswered: false,
       isRight: false, // 本题是否答对
+      isEnd: false, // 是否结束（全部答对或答错一题）
       optionsInfo: [
         { selected: false },
         { selected: false },
         { selected: false },
         { selected: false }
+      ],
+      costTime: [], // 花费的时间，第一位开始时间，第二位结束时间
+      totalScore: 0, // 总分
+      showMessage: {}, // 要展示的消息
+      successMessage: [
+        {
+          title: 'YOU WIN！！！',
+          text: 'CHEERS, YOU GOT IT!'
+        }, {
+          title: '恭喜你，闯关成功！',
+          text: '分享给好友，刷新奖金上限！'
+        }, {
+          title: '恭喜你，闯关成功！',
+          text: '什么时候我才能像你一样优秀！'
+        }, {
+          title: '恭喜你，闯关成功！',
+          text: '一看你就是自带学神buff的人。'
+        }
+      ],
+      failMessage: [
+        {
+          title: '很遗憾，闯关失败',
+          text: '快去邀请好友，获得更多答题机会。'
+        }, {
+          title: '智者千虑，必有一失',
+          text: '你已经很不错了，再加把劲！'
+        }, {
+          title: '很遗憾，闯关失败',
+          text: '人不丑也要多读书！'
+        }, {
+          title: '很遗憾，闯关失败',
+          text: '快去资助手册小程序里复习一波吧！'
+        }, {
+          title: '很遗憾，闯关失败',
+          text: '每天都来练习模式练一练吧！'
+        }
       ]
     };
   },
@@ -158,6 +199,7 @@ export default {
             { selected: true }
           ];
           clearInterval(this.countdownInterval);
+          this.showResult();
           return;
         }
         this.restTime -= 1;
@@ -168,40 +210,89 @@ export default {
       // 重置之前的数据
       this.resetData();
       // 获取题目
-      getQuestion({ openid: this.openid }).then(({ data }) => {
-        this.question = data;
-        this.show = true;
-        this.countdown();
-      });
+      getQuestion({ openid: this.openid })
+        .then(({ data }) => {
+          this.currentQuestion += 1;
+          this.question = data;
+          this.show = true;
+          this.countdown();
+          // 开始计时
+          this.costTime[0] = new Date();
+        });
+    },
+    // 判断答案
+    judgeAnswer(index) {
+      return index === 3;
     },
     // 判断选择是否正确
     judgeResult(index) {
+      // 已作答
       if (this.isAnswered) return;
-      if (this.question.questionTitle.length % this.question.questionOptions.length === index) {
+      this.costTime[1] = new Date();
+      if (this.judgeAnswer(index)) {
         // 是否作答和是否答对同步更新
         this.isRight = true;
         this.$set(this.optionsInfo, index, {
           selected: true,
           state: true
         });
-        // 答对暂停倒计时
+        this.computeScore();
+        // 答对停止倒计时
         clearInterval(this.countdownInterval);
-        // 播放动画后继续下一题
-        setTimeout(() => {
-          this.showQuestion();
-        }, 1500);
+        // 判断结束或者进行下一题
+        if (this.currentQuestion === 10) {
+          // 播放动画后展示结果
+          this.showResult();
+        } else {
+          // 播放动画后继续下一题
+          setTimeout(() => {
+            this.showQuestion();
+          }, 1500);
+        }
       } else {
+        // 答错则停止倒计时
+        clearInterval(this.countdownInterval);
         this.$set(this.optionsInfo, index, {
           selected: true,
           state: false
         });
-        // 答错则暂停出题和倒计时
-        clearInterval(this.countdownInterval);
+        this.showResult();
       }
-    }
+    },
+    // 计算分数，答对每少用一秒加10分，答错则不调用（得0分）
+    computeScore() {
+      const ms = this.costTime[1].getTime() - this.costTime[0].getTime();
+      this.costTime = [];
+      this.totalScore += 100 - Math.round(ms / 100);
+    },
+    showResult() {
+      // 结束游戏
+      this.endGame();
+      // 播放动画后展示结果
+      setTimeout(() => {
+        // 随机获取提示文本
+        this.getRandomMessage(this.isRight ? this.successMessage : this.failMessage);
+        this.isEnd = true;
+      }, 2000);
+    },
+    getRandomMessage(array) {
+      this.showMessage = array[Math.floor(Math.random() * array.length)];
+    },
+    ...mapMutations({
+      endGame: END_GAME
+    })
   },
   created() {
+    // 避免直接通过url访问这个页面
+    if (!this.gameMode) {
+      this.$router.push('/');
+    }
+  },
+  mounted() {
     this.showQuestion();
+  },
+  beforeDestroy() {
+    clearInterval(this.countdownInterval);
   },
   watch: {
     optionsInfo() {
@@ -210,7 +301,8 @@ export default {
   },
   computed: mapState([
     'openid',
-    'mute'
+    'mute',
+    'gameMode'
   ]),
   components: {
     CountdownTimer,

@@ -18,9 +18,17 @@ const mutations = {
   },
   [types.PLAY_GAME](state) {
     state.gameNumber[0] -= 1;
+    state.gameMode = 'normal';
   },
   [types.PRACTICE](state) {
     state.practiceNumber -= 1;
+    state.gameMode = 'practice';
+  },
+  [types.PLAY_ACTIVITY](state) {
+    state.gameMode = 'activity';
+  },
+  [types.END_GAME](state) {
+    state.gameMode = '';
   },
   [types.INVITE](state) {
     state.gameNumber[0] += 1;
