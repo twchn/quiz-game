@@ -4,8 +4,8 @@ export function getUserInfo() {
   return request('get', '/userinfo');
 }
 
-export function getRankingList() {
-  return request('get', '/rank');
+export function getRankingList({ type }) {
+  return request('get', '/rank', { type });
 }
 
 export function beginPlay({ openid }) {

@@ -12,7 +12,15 @@
 export default {
   name: 'ScrollMessage',
   props: {
-    messages: Array,
+    messages: {
+      type: Array,
+      default() {
+        return [
+          '小提示：页面右上角有音效开关哦~',
+          '小提示：点击页面最下方按钮可查看详细规则'
+        ];
+      }
+    },
     switchDelay: {
       default: 3000,
       type: Number
@@ -32,13 +40,16 @@ export default {
       }, 1200);
     }
   },
-  created() {
-    // 判断是否需要滚动
-    // if (this.messages.length <= 1) return;
-    // 将定时器赋给this实例方便清除
-    this.interval = setInterval(() => {
-      this.scroll();
-    }, this.switchDelay);
+  watch: {
+    messages() {
+      // 判断是否需要滚动
+      if (this.messages.length <= 1) return;
+      clearInterval(this.interval);
+      // 将定时器赋给this实例方便清除
+      this.interval = setInterval(() => {
+        this.scroll();
+      }, this.switchDelay);
+    }
   },
   beforeDestroy() {
     clearInterval(this.interval);

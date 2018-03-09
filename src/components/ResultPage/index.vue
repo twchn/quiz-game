@@ -11,12 +11,14 @@
       <Button
         :propsStyle="{ backgroundColor: '#198cf9', color: '#fff' }"
       >
-        再玩一局
+        <router-link to="/" class="btn">
+          回到首页
+        </router-link>
       </Button>
       <Button
         :propsStyle="{ backgroundColor: '#fd5b96', color: '#fff' }"
       >
-        <router-link to="/share" tag="span">
+        <router-link to="/share" class="btn">
           邀请好友
         </router-link>
       </Button>
@@ -47,7 +49,7 @@ export default {
     text: String,
     score: {
       type: Number,
-      require: true
+      required: true
     }
   },
   computed: {

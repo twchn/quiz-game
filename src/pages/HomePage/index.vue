@@ -228,7 +228,7 @@ export default {
     getUserInfo().then(({ data }) => {
       this.setUserInfo(data);
       this.messages = data.messages;
-      this.trailerPrize = data.trailer.prize;
+      this.trailerPrize = data.trailer.prize || 0;
       const trailerTime = new Date(data.trailer.time);
       const restDay = trailerTime.getDate() - new Date().getDate();
       switch (restDay) {
@@ -242,7 +242,7 @@ export default {
           this.trailerTime = `后天 ${trailerTime.getHours()}:${trailerTime.getMinutes()}`;
           break;
         default:
-          this.trailerTime = `${trailerTime.getMonth() + 1}月${trailerTime.getDate()}日 ${trailerTime.getHours()}:${trailerTime.getMinutes()}`;
+          this.trailerTime = `${trailerTime.getMonth() + 1 || 0}月${trailerTime.getDate() || 0}日 ${trailerTime.getHours() || 0}:${trailerTime.getMinutes() || 0}`;
       }
     });
   }

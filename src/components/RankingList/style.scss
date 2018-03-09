@@ -40,7 +40,7 @@ $themeColor: #3c1860;
   }
   .content {
     margin-top: 48px;
-    height: calc(100vh - 110px);
+    height: calc(100vh - 100px);
     overflow: auto;
     // 导航选项
     nav {
@@ -159,7 +159,7 @@ $themeColor: #3c1860;
       overflow: auto;
       .list-box {
         width: 92%;
-        margin: 18px 4%;
+        padding: 10px 4%;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -189,6 +189,9 @@ $themeColor: #3c1860;
           font-size: 14px;
           letter-spacing: .1em;
         }
+      }
+      .active {
+        background-color: #63447f;
       }
     }
     // 本人排名

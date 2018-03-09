@@ -92,6 +92,11 @@
         {{ item.content }}
       </Option>
     </ul>
+    <StatusBar
+      class="bottom-bar"
+      :count="questionCount"
+      :current="currentQuestion"
+    />
     <ResultPage
       v-if="isEnd"
       :result="isRight"
@@ -109,6 +114,7 @@ import { END_GAME } from '../../store/mutation-types';
 import CountdownTimer from '../../components/CountdownTimer';
 import Option from '../../components/Option';
 import ResultPage from '../../components/ResultPage';
+import StatusBar from '../../components/StatusBar';
 import { getQuestion } from '../../api';
 
 export default {
@@ -121,6 +127,7 @@ export default {
         questionOptions: [],
         questionId: ''
       },
+      questionCount: 10, // 总题数
       currentQuestion: 0, // 当前第几题
       totalTime: 10, // 总共答题时间
       restTime: 10, // 剩余答题时间
@@ -139,7 +146,7 @@ export default {
       successMessage: [
         {
           title: 'YOU WIN！！！',
-          text: 'CHEERS, YOU GOT IT!'
+          text: 'CHEERS, YOU GOT IT! '
         }, {
           title: '恭喜你，闯关成功！',
           text: '分享给好友，刷新奖金上限！'
@@ -240,7 +247,7 @@ export default {
         // 答对停止倒计时
         clearInterval(this.countdownInterval);
         // 判断结束或者进行下一题
-        if (this.currentQuestion === 10) {
+        if (this.currentQuestion === this.questionCount) {
           // 播放动画后展示结果
           this.showResult();
         } else {
@@ -307,7 +314,8 @@ export default {
   components: {
     CountdownTimer,
     Option,
-    ResultPage
+    ResultPage,
+    StatusBar
   }
 };
 </script>

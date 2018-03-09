@@ -7,8 +7,17 @@
       </header>
       <div class="content">
         <nav>
-          <button>本周</button>
-          <button class="active">总榜</button>
+          <button
+            :class="{ active: rankingType === 'week' }"
+            @click="rankingType = 'week'"
+          >
+            本周</button>
+          <button
+            :class="{ active: rankingType === 'total' }"
+            @click="rankingType = 'total'"
+          >
+            总榜
+          </button>
         </nav>
         <div class="top-list">
           <div
@@ -28,6 +37,7 @@
             v-for="(item, index) in rankingList"
             v-if="index > 2"
             :key="item.userId"
+            :class="{ active: index +1 === rank }"
           >
             <span class="rank">{{ index + 1 }}</span>
             <img class="avatar" v-lazy="item.headImgUrl" alt="avatar">
@@ -56,6 +66,7 @@ export default {
   name: 'RankingList',
   data() {
     return {
+      rankingType: 'total', // 排行榜类别，total为总榜，week为周榜
       rankingList: []
     };
   },
@@ -70,10 +81,19 @@ export default {
     'score',
     'rank'
   ]),
+  watch: {
+    rankingType(newType) {
+      getRankingList({ type: newType })
+        .then(({ data }) => {
+          this.rankingList = data.rankingList;
+        });
+    }
+  },
   created() {
-    getRankingList().then(({ data }) => {
-      this.rankingList = data.rankingList;
-    });
+    getRankingList({ type: this.rankingType })
+      .then(({ data }) => {
+        this.rankingList = data.rankingList;
+      });
   }
 };
 </script>
