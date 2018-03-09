@@ -2,7 +2,7 @@
   <button class="begin-btn">
     <span class="border"></span>
     <span class="border" :style="propsStyle">
-      <slot></slot>
+      <slot />
     </span>
   </button>
 </template>

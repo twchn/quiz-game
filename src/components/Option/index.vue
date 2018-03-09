@@ -6,7 +6,7 @@
       :class="{ [optionsInfo.state ? 'right' : 'wrong']: optionsInfo.selected }"
       :style="wrongClass"
     >
-      <slot></slot>
+      <slot />
       <span class="rate">{{ optionsInfo.selected ? rate : '' }}</span>
     </li>
   </transition>

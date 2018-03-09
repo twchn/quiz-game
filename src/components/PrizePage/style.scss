@@ -34,9 +34,11 @@
     font-weight: 500;
   }
   .rules {
+    padding: 0 10%;
     color: #333;
     border-radius: 6px;
     font-size: 14px;
+    list-style-position: inside;
     li {
       margin: 8px 0;
     }

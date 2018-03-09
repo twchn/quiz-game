@@ -2,7 +2,7 @@
   <transition name="slide-fade">
     <div class="modal-container" @click.self="goHome">
       <div class="modal">
-        <slot></slot>
+        <slot />
       </div>
     </div>
   </transition>

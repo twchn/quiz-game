@@ -87,7 +87,7 @@
       <router-link to="/rules">游戏规则</router-link>
     </div>
   </main>
-  <router-view @showPromptBox="showPromptBox"></router-view>
+  <router-view @showPromptBox="showPromptBox" />
 </div>
 </template>
 
