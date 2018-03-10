@@ -81,3 +81,8 @@ Mock.mock('/question', 'post', {
     }
   ]
 });
+
+Mock.mock('/score', 'post', (options) => {
+  const body = JSON.parse(options.body);
+  return 100 - Math.round((body.costTime[1] - body.costTime[0]) / 100);
+});

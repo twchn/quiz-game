@@ -105,6 +105,7 @@
       :score="totalScore"
     />
     <audio ref="timeout" src="../../assets/audio/timeout.wav">浏览器版本过低，请尽快升级</audio>
+    <audio ref="wrong" src="../../assets/audio/wrong.mp3">浏览器版本过低，请尽快升级</audio>
   </main>
 </template>
 
@@ -115,7 +116,7 @@ import CountdownTimer from '../../components/CountdownTimer';
 import Option from '../../components/Option';
 import ResultPage from '../../components/ResultPage';
 import StatusBar from '../../components/StatusBar';
-import { getQuestion } from '../../api';
+import { getQuestion, getScore } from '../../api';
 
 export default {
   name: 'Quiz',
@@ -195,8 +196,8 @@ export default {
     countdown() {
       clearInterval(this.countdownInterval);
       this.countdownInterval = setInterval(() => {
-        if (this.restTime === 1 && !this.mute) {
-          this.$refs.timeout.play();
+        if (this.restTime === 1) {
+          this.playAudio('timeout');
         }
         if (this.restTime === 0) {
           this.optionsInfo = [
@@ -212,7 +213,6 @@ export default {
         this.restTime -= 1;
       }, 1000);
     },
-    // 展示问题
     showQuestion() {
       // 重置之前的数据
       this.resetData();
@@ -224,7 +224,7 @@ export default {
           this.show = true;
           this.countdown();
           // 开始计时
-          this.costTime[0] = new Date();
+          this.costTime[0] = new Date().getTime();
         });
     },
     // 判断答案
@@ -235,7 +235,7 @@ export default {
     judgeResult(index) {
       // 已作答
       if (this.isAnswered) return;
-      this.costTime[1] = new Date();
+      this.costTime[1] = new Date().getTime();
       if (this.judgeAnswer(index)) {
         // 是否作答和是否答对同步更新
         this.isRight = true;
@@ -263,14 +263,17 @@ export default {
           selected: true,
           state: false
         });
+        this.playAudio('wrong');
         this.showResult();
       }
     },
     // 计算分数，答对每少用一秒加10分，答错则不调用（得0分）
     computeScore() {
-      const ms = this.costTime[1].getTime() - this.costTime[0].getTime();
+      getScore({ openid: this.openid, costTime: this.costTime })
+        .then(({ data }) => {
+          this.totalScore += data;
+        });
       this.costTime = [];
-      this.totalScore += 100 - Math.round(ms / 100);
     },
     showResult() {
       // 结束游戏
@@ -284,6 +287,18 @@ export default {
     },
     getRandomMessage(array) {
       this.showMessage = array[Math.floor(Math.random() * array.length)];
+    },
+    playAudio(type) {
+      if (this.mute) return;
+      switch (type) {
+        case 'wrong':
+          this.$refs.wrong.play();
+          break;
+        case 'timeout':
+          this.$refs.timeout.play();
+          break;
+        default:
+      }
     },
     ...mapMutations({
       endGame: END_GAME

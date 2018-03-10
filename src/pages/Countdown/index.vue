@@ -14,9 +14,9 @@
 
 <script>
 import { mapState } from 'vuex';
-import img1 from '../../assets/countdown/1.png';
-import img2 from '../../assets/countdown/2.png';
-import img3 from '../../assets/countdown/3.png';
+import img1 from '../../assets/countdown/1.svg';
+import img2 from '../../assets/countdown/2.svg';
+import img3 from '../../assets/countdown/3.svg';
 
 export default {
   name: 'Countdown',

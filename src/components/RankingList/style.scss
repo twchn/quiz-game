@@ -48,7 +48,7 @@ $themeColor: #3c1860;
       align-items: center;
       justify-content: space-around;
       width: 90%;
-      margin: 10px auto 36px;
+      margin: 10px auto 0;
       button {
         width: 140px;
         height: 36px;
@@ -73,6 +73,7 @@ $themeColor: #3c1860;
       align-items: flex-end;
       margin-bottom: 10px;
       width: 96%;
+      margin-top: 20px;
       padding: 0 2%;
       .top-list-box {
         display: flex;
@@ -82,14 +83,15 @@ $themeColor: #3c1860;
         position: relative;
         width: 32%;
         .avatar {
-          width: 60px;
-          height: 60px;
-          border-radius: 30px;
+          margin-bottom: 40px;
+          width: 56px;
+          height: 56px;
+          border-radius: 50%;
         }
         .user-name {
           width: 100%;
           font-size: 14px;
-          margin: 12px 0 6px;
+          margin: 0 0 12px;
           text-align: center;
           word-break:keep-all;
           white-space:nowrap;
@@ -111,22 +113,21 @@ $themeColor: #3c1860;
         &::before {
           content: '';
           position: absolute;
-          top: -25px;
+          bottom: 72px;
         }
 
         &:nth-child(1) {
           order: 2;
           .avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 40px;
+            width: 76px;
+            height: 76px;
           }
           &::before {
             //left: 20px;
-            width: 40px;
-            height: 60px;
-            background: url("../../assets/rank/first.png") no-repeat center center;
-            background-size: 40px 60px;
+            width: 50px;
+            height: 50px;
+            background: url("../../assets/rank/first.svg") no-repeat center center;
+            background-size: 50px 50px;
           }
         }
 
@@ -135,9 +136,9 @@ $themeColor: #3c1860;
           &::before {
             //left: 10px;
             width: 40px;
-            height: 60px;
-            background: url("../../assets/rank/second.png") no-repeat center center;
-            background-size: 40px 60px;
+            height: 40px;
+            background: url("../../assets/rank/second.svg") no-repeat center center;
+            background-size: 40px 40px;
           }
         }
 
@@ -146,9 +147,9 @@ $themeColor: #3c1860;
           &::before {
             //left: 10px;
             width: 40px;
-            height: 60px;
-            background: url("../../assets/rank/third.png") no-repeat center center;
-            background-size: 40px 60px;
+            height: 40px;
+            background: url("../../assets/rank/third.svg") no-repeat center center;
+            background-size: 40px 40px;
           }
         }
       }
