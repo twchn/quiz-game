@@ -263,7 +263,7 @@ export default {
           state: false
         });
         this.playAudio('wrong');
-        // this.showResult();
+        this.showResult();
       }
     },
     // 计算分数，答对每少用一秒加10分，答错则不调用（得0分）

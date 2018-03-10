@@ -11,17 +11,17 @@
     background-size: 100% 100%;
   }
   .background{
-    margin-top: -60px;
+    margin-top: -66px;
     width: 0;
     height: 0;
-    border-left: 40px solid transparent;
-    border-right: 40px solid transparent;
-    border-bottom: 32px solid #fff;
+    border-left: 48px solid transparent;
+    border-right: 48px solid transparent;
+    border-bottom: 34px solid #fff;
   }
   .clock {
-    margin-top: -30px;
-    width: 60px;
-    height: 60px;
+    margin-top: -34px;
+    width: 68px;
+    height: 68px;
     box-sizing: border-box;
     border: 6px solid #fff;
   }
@@ -64,7 +64,7 @@
   }
   // 题目
   .question {
-    margin: 32px 0 10px;
+    margin: 40px 0 10px;
     width: 75%;
     text-align: center;
     color: #444;

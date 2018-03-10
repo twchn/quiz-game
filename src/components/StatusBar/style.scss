@@ -1,13 +1,13 @@
 .status-bar {
   width: 90%;
-  height: 20px;
+  height: 24px;
   margin: 0 auto;
   padding: 0;
   list-style: none;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  font-size: 12px;
+  font-size: 14px;
   color: #c9c9c9;
   .number {
     display: flex;
@@ -15,7 +15,7 @@
     transition: all .5s;
   }
   .active {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
     color: #dd5497;
   }

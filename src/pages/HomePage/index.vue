@@ -1,9 +1,8 @@
 <template>
 <div>
-  <div v-if="loading" class="loading">
-    <img src="../../assets/loading.gif" alt="loading">
-    <p>加载中...</p>
-  </div>
+  <PreloadImage
+    :imgArr="imgArr"
+  />
   <PromptBox v-show="showPrompt" :promptMessage="promptMessage" />
   <main class="main" :class="{ blur: whetherBlur}">
     <div class="mask"></div>
@@ -97,16 +96,18 @@ import Icon from 'vue-awesome/components/Icon';
 import ScrollMessage from '../../components/ScrollMessage';
 import PromptBox from '../../components/PromptBox';
 import Button from '../../components/Button';
+import PreloadImage from '../../components/PreloadImage';
 import { GET_CACHE, SET_USER_INFO, SWITCH_MUSIC, PLAY_GAME } from '../../store/mutation-types';
 import { getUserInfo, playGame } from '../../api';
 import musicIcon from '../../assets/icon/background-music.svg';
 import muteMusicIcon from '../../assets/icon/background-music-mute.svg';
+import imageList from './image-list';
 
 export default {
   name: 'HomePage',
   data() {
     return {
-      loading: false,
+      imgArr: imageList,
       showPrompt: false,
       whetherBlur: false,
       promptMessage: '',
@@ -219,7 +220,8 @@ export default {
     Icon,
     ScrollMessage,
     PromptBox,
-    Button
+    Button,
+    PreloadImage
   },
   created() {
     // 获取缓存
