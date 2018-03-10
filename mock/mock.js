@@ -2,8 +2,8 @@ import Mock from 'mockjs';
 
 /* 请求类型/type必须小写 */
 
-const gameNumber = [2, 3];
-let practiceNumber = 1;
+const gameNumber = [1, 3];
+let practiceNumber = 2;
 
 // 用户信息
 Mock.mock('/userinfo', 'get', {
@@ -40,27 +40,28 @@ Mock.mock(/\/rank/, 'get', {
   ]
 });
 
-Mock.mock('/play', 'post', () => {
+Mock.mock('/play', 'post', (options) => {
   const state = { state: false };
-  if (gameNumber[0] > 0) {
-    gameNumber[0] -= 1;
-    state.state = true;
+  switch (JSON.parse(options.body).type) {
+    case 'normal':
+      if (gameNumber[0] > 0) {
+        gameNumber[0] -= 1;
+        state.state = true;
+      }
+      break;
+    case 'practice':
+      if (practiceNumber > 0) {
+        practiceNumber -= 1;
+        state.state = true;
+      }
+      break;
+    case 'activity':
+      state.state = true;
+      break;
+    default:
   }
   return state;
 });
-
-Mock.mock('/practice', 'post', () => {
-  const state = { state: false };
-  if (practiceNumber > 0) {
-    practiceNumber -= 1;
-    state.state = true;
-  }
-  return state;
-});
-
-Mock.mock('/activity', 'post', () => ({
-  state: true
-}));
 
 Mock.mock('/invite', 'post', () => {
   gameNumber[0] += 1;

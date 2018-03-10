@@ -2,7 +2,9 @@
   <transition name="slide-fade">
     <div class="rules-container">
       <header class="header">
-        <img class="close-icon" src="../../assets/icon/close.svg" alt="close" @click="goHome">
+        <router-link to="/">
+          <img class="close-icon" src="../../assets/icon/close.svg" alt="close">
+        </router-link>
         <h1 class="heading">游戏规则</h1>
       </header>
       <div class="content">
@@ -79,12 +81,7 @@
 
 <script>
 export default {
-  name: 'RulesPage',
-  methods: {
-    goHome() {
-      this.$router.push('/');
-    }
-  }
+  name: 'RulesPage'
 };
 </script>
 

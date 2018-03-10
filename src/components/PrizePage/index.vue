@@ -1,6 +1,8 @@
 <template>
   <PopupModal>
-    <img class="close-btn" @click="goHome" src="../../assets/icon/close.svg" alt="close">
+    <router-link to="/">
+      <img class="close-btn" src="../../assets/icon/close.svg" alt="close">
+    </router-link>
     <div class="prize-container">
       <img class="avatar" v-lazy="headImgUrl" alt="avatar">
       <p class="user-name">{{ nickname }}</p>
@@ -31,12 +33,7 @@ export default {
     'nickname',
     'headImgUrl',
     'prize'
-  ]),
-  methods: {
-    goHome() {
-      this.$router.push('/');
-    }
-  }
+  ])
 };
 </script>
 

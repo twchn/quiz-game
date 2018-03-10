@@ -1,6 +1,8 @@
 <template>
   <PopupModal>
-    <img class="close-btn" @click="goHome" src="../../assets/icon/close.svg" alt="close">
+    <router-link to="/">
+      <img class="close-btn" src="../../assets/icon/close.svg" alt="close">
+    </router-link>
     <p class="invitation-code">{{ invitationCode }}</p>
     <h1 class="title">邀请好友填写邀请码，获得游戏机会</h1>
     <ul class="rules">
@@ -30,12 +32,7 @@ export default {
   },
   computed: mapState([
     'invitationCode'
-  ]),
-  methods: {
-    goHome() {
-      this.$router.push('/');
-    }
-  }
+  ])
 };
 </script>
 

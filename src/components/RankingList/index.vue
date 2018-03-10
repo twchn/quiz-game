@@ -2,7 +2,9 @@
   <transition name="slide-fade">
     <div class="list-container">
       <header class="header">
-        <img class="close-icon" src="../../assets/icon/close-white.svg" alt="close" @click="goHome">
+        <router-link to="/">
+          <img class="close-icon" src="../../assets/icon/close-white.svg" alt="close">
+        </router-link>
         <h1 class="heading">排行榜</h1>
       </header>
       <div class="content">
@@ -69,11 +71,6 @@ export default {
       rankingType: 'total', // 排行榜类别，total为总榜，week为周榜
       rankingList: []
     };
-  },
-  methods: {
-    goHome() {
-      this.$router.push('/');
-    }
   },
   computed: mapState([
     'nickname',

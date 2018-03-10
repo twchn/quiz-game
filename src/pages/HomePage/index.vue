@@ -46,20 +46,20 @@
       <!--三个按钮-->
       <Button
         class="practice-btn"
-        @click.native="practice"
+        @click.native="play('practice')"
       >
         <span class="text">练习模式 (每天三次机会)</span>
       </Button>
       <Button
         class="normal-btn"
-        @click.native="playGame"
+        @click.native="play('normal')"
       >
         <img class="begin" src="../../assets/icon/begin.svg" alt="begin">
         <span class="text">开始答题</span>
       </Button>
       <Button
         class="activity-btn"
-        @click.native="playActivity"
+        @click.native="play('activity')"
         :propsStyle="{ backgroundColor: '#198cf9' }"
       >
         <img class="activity-img" src="../../assets/activity.png" alt="begin">
@@ -97,8 +97,8 @@ import Icon from 'vue-awesome/components/Icon';
 import ScrollMessage from '../../components/ScrollMessage';
 import PromptBox from '../../components/PromptBox';
 import Button from '../../components/Button';
-import { GET_CACHE, SET_USER_INFO, SWITCH_MUSIC, PLAY_GAME, PRACTICE, PLAY_ACTIVITY } from '../../store/mutation-types';
-import { getUserInfo, beginPlay, beginPractice, beginActivity } from '../../api';
+import { GET_CACHE, SET_USER_INFO, SWITCH_MUSIC, PLAY_GAME } from '../../store/mutation-types';
+import { getUserInfo, playGame } from '../../api';
 import musicIcon from '../../assets/icon/background-music.svg';
 import muteMusicIcon from '../../assets/icon/background-music-mute.svg';
 
@@ -116,50 +116,31 @@ export default {
     };
   },
   methods: {
-    playGame() {
-      if (this.gameNumber[0] <= 0) {
-        this.showPromptBox('游戏次数不够，尝试填写邀请码吧！');
-        return;
-      }
-      beginPlay({ openid: this.openid })
-        .then((res) => {
-          if (res.data.state) {
-            this.commitPlayGame();
-            this.$router.push('/countdown');
-          } else {
-            this.showPromptBox('抱歉，暂时无法答题');
+    play(type) {
+      switch (type) {
+        case 'normal':
+          if (this.gameNumber[0] <= 0) {
+            this.showPromptBox('游戏次数不够，尝试填写邀请码吧！');
+            return;
           }
-        })
-        .catch(() => {
-          this.showPromptBox('抱歉，暂时无法答题');
-        });
-    },
-    practice() {
-      if (this.practiceNumber <= 0) {
-        this.showPromptBox('今日练习次数已用完，试试游戏模式吧！');
-        return;
-      }
-      beginPractice({ openid: this.openid })
-        .then((res) => {
-          if (res.data.state) {
-            this.commitPractice();
-            this.$router.push('/countdown');
-          } else {
-            this.showPromptBox('抱歉，暂时无法答题');
+          break;
+        case 'practice':
+          if (this.practiceNumber <= 0) {
+            this.showPromptBox('今日练习次数已用完，试试游戏模式吧！');
+            return;
           }
-        })
-        .catch(() => {
-          this.showPromptBox('抱歉，暂时无法答题');
-        });
-    },
-    playActivity() {
-      beginActivity({ openid: this.openid })
+          break;
+        case 'activity':
+          break;
+        default:
+      }
+      playGame({ openid: this.openid, type })
         .then((res) => {
           if (res.data.state) {
-            this.commitPlayActivity();
+            this.commitPlayGame(type);
             this.$router.push('/countdown');
           } else {
-            this.showPromptBox('抱歉，暂时无法答题');
+            this.showPromptBox(res.data.msg);
           }
         })
         .catch(() => {
@@ -187,13 +168,33 @@ export default {
         this.showPromptBox('音效已开启');
       }
     },
+    loadUserInfo() {
+      getUserInfo().then(({ data }) => {
+        this.setUserInfo(data);
+        this.messages = data.messages;
+        this.trailerPrize = data.trailer.prize || 0;
+        const trailerTime = new Date(data.trailer.time);
+        const restDay = trailerTime.getDate() - new Date().getDate();
+        switch (restDay) {
+          case 0:
+            this.trailerTime = `今天 ${trailerTime.getHours()}:${trailerTime.getMinutes()}`;
+            break;
+          case 1:
+            this.trailerTime = `明天 ${trailerTime.getHours()}:${trailerTime.getMinutes()}`;
+            break;
+          case 2:
+            this.trailerTime = `后天 ${trailerTime.getHours()}:${trailerTime.getMinutes()}`;
+            break;
+          default:
+            this.trailerTime = `${trailerTime.getMonth() + 1 || 0}月${trailerTime.getDate() || 0}日 ${trailerTime.getHours() || 0}:${trailerTime.getMinutes() || 0}`;
+        }
+      });
+    },
     ...mapMutations({
       getCache: GET_CACHE,
       setUserInfo: SET_USER_INFO,
       switchMusic: SWITCH_MUSIC,
-      commitPlayGame: PLAY_GAME,
-      commitPractice: PRACTICE,
-      commitPlayActivity: PLAY_ACTIVITY
+      commitPlayGame: PLAY_GAME
     })
   },
   computed: {
@@ -225,26 +226,12 @@ export default {
     this.getCache();
     // 避免刷新后失去背景模糊
     this.judgeBlur();
-    getUserInfo().then(({ data }) => {
-      this.setUserInfo(data);
-      this.messages = data.messages;
-      this.trailerPrize = data.trailer.prize || 0;
-      const trailerTime = new Date(data.trailer.time);
-      const restDay = trailerTime.getDate() - new Date().getDate();
-      switch (restDay) {
-        case 0:
-          this.trailerTime = `今天 ${trailerTime.getHours()}:${trailerTime.getMinutes()}`;
-          break;
-        case 1:
-          this.trailerTime = `明天 ${trailerTime.getHours()}:${trailerTime.getMinutes()}`;
-          break;
-        case 2:
-          this.trailerTime = `后天 ${trailerTime.getHours()}:${trailerTime.getMinutes()}`;
-          break;
-        default:
-          this.trailerTime = `${trailerTime.getMonth() + 1 || 0}月${trailerTime.getDate() || 0}日 ${trailerTime.getHours() || 0}:${trailerTime.getMinutes() || 0}`;
-      }
-    });
+    this.loadUserInfo();
+    if (this.$route.params.message) {
+      this.$nextTick(() => {
+        this.showPromptBox(this.$route.params.message);
+      });
+    }
   }
 };
 </script>

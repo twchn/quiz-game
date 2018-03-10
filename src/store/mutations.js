@@ -5,29 +5,35 @@ const mutations = {
   [types.GET_CACHE](state) {
     state.mute = getLocal('mute') || false;
   },
-  [types.SET_USER_INFO](state, userinfo) {
-    state.openid = userinfo.openid;
-    state.nickname = userinfo.nickname;
-    state.headImgUrl = userinfo.headImgUrl;
-    state.gameNumber = userinfo.gameNumber;
-    state.practiceNumber = userinfo.practiceNumber;
-    state.prize = userinfo.prize.toFixed(2);
-    state.score = userinfo.score;
-    state.rank = userinfo.rank;
-    state.invitationCode = userinfo.invitationCode;
+  [types.SET_USER_INFO](state, userInfo) {
+    state.openid = userInfo.openid;
+    state.nickname = userInfo.nickname;
+    state.headImgUrl = userInfo.headImgUrl;
+    state.gameNumber = userInfo.gameNumber;
+    state.practiceNumber = userInfo.practiceNumber;
+    state.prize = userInfo.prize.toFixed(2);
+    state.score = userInfo.score;
+    state.rank = userInfo.rank;
+    state.invitationCode = userInfo.invitationCode;
   },
-  [types.PLAY_GAME](state) {
-    state.gameNumber[0] -= 1;
-    state.gameMode = 'normal';
-  },
-  [types.PRACTICE](state) {
-    state.practiceNumber -= 1;
-    state.gameMode = 'practice';
-  },
-  [types.PLAY_ACTIVITY](state) {
-    state.gameMode = 'activity';
+  [types.PLAY_GAME](state, type) {
+    switch (type) {
+      case 'normal':
+        state.gameNumber[0] -= 1;
+        state.gameMode = 'normal';
+        break;
+      case 'practice':
+        state.practiceNumber -= 1;
+        state.gameMode = 'practice';
+        break;
+      case 'activity':
+        state.gameMode = 'activity';
+        break;
+      default:
+    }
   },
   [types.END_GAME](state) {
+    state.previousGameMode = state.gameMode;
     state.gameMode = '';
   },
   [types.INVITE](state) {

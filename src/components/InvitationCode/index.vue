@@ -2,7 +2,9 @@
   <transition name="slide-fade">
     <div class="code-container" @click.self="goHome">
       <div class="modal">
-        <img class="close-btn" @click="goHome" src="../../assets/icon/close.svg" alt="close">
+        <router-link to="/">
+          <img class="close-btn" src="../../assets/icon/close.svg" alt="close">
+        </router-link>
         <h1>请输入邀请码</h1>
         <div class="input">
           <input
@@ -44,7 +46,7 @@ export default {
     };
   },
   methods: {
-    goHome() {
+    goHomeWithMessage() {
       this.$router.push('/');
     },
     submitCode() {
@@ -57,15 +59,15 @@ export default {
           if (res.data.state) {
             this.$emit('showPromptBox', '邀请成功！');
             this.$store.commit('INVITE');
-            this.goHome();
+            this.goHomeWithMessage();
           } else {
             this.$emit('showPromptBox', '邀请码无效！');
-            this.goHome();
+            this.goHomeWithMessage();
           }
         })
         .catch(() => {
           this.$emit('showPromptBox', '网络错误，请重试！');
-          this.goHome();
+          this.goHomeWithMessage();
         });
     }
   }
