@@ -2,7 +2,7 @@
   <main class="main">
     <header class="header"></header>
     <svg
-      class="animation"
+      class="animation clock"
       v-if="isAnswered && isRight"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
@@ -29,7 +29,7 @@
       </polyline>
     </svg>
     <svg
-      class="animation"
+      class="animation clock"
       v-else-if="isAnswered"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
@@ -233,7 +233,6 @@ export default {
     },
     // 判断选择是否正确
     judgeResult(index) {
-      // 已作答
       if (this.isAnswered) return;
       this.costTime[1] = new Date().getTime();
       if (this.judgeAnswer(index)) {
@@ -264,7 +263,7 @@ export default {
           state: false
         });
         this.playAudio('wrong');
-        this.showResult();
+        // this.showResult();
       }
     },
     // 计算分数，答对每少用一秒加10分，答错则不调用（得0分）
