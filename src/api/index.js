@@ -16,8 +16,8 @@ export function invite({ openid, code }) {
   return request('post', '/invite', { openid, code });
 }
 
-export function getQuestion({ openid, mode }) {
-  return request('post', '/question', { openid, mode });
+export function getQuestion({ openid, type }) {
+  return request('post', '/question', { openid, type });
 }
 
 export function getScore({ openid, costTime }) {

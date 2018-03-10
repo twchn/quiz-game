@@ -217,7 +217,7 @@ export default {
       // 重置之前的数据
       this.resetData();
       // 获取题目
-      getQuestion({ openid: this.openid })
+      getQuestion({ openid: this.openid, type: this.gameMode })
         .then(({ data }) => {
           this.currentQuestion += 1;
           this.question = data;
@@ -314,6 +314,7 @@ export default {
   },
   beforeDestroy() {
     clearInterval(this.countdownInterval);
+    this.endGame();
   },
   watch: {
     optionsInfo() {

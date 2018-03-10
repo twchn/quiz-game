@@ -13,7 +13,8 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
+import { END_GAME } from '../../store/mutation-types';
 import img1 from '../../assets/countdown/1.svg';
 import img2 from '../../assets/countdown/2.svg';
 import img3 from '../../assets/countdown/3.svg';
@@ -52,7 +53,10 @@ export default {
         this.ready = false;
         this.count += 1;
       }, 1000);
-    }
+    },
+    ...mapMutations({
+      endGame: END_GAME
+    })
   },
   created() {
     // 避免直接输入url进入
@@ -68,6 +72,7 @@ export default {
   },
   beforeDestroy() {
     clearInterval(this.interval);
+    this.endGame();
   }
 };
 </script>
