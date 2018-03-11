@@ -47,6 +47,8 @@ Mock.mock('/play', 'post', (options) => {
       if (gameNumber[0] > 0) {
         gameNumber[0] -= 1;
         state.state = true;
+      } else {
+        state.msg = '机会已用完';
       }
       break;
     case 'practice':
@@ -84,5 +86,15 @@ Mock.mock('/question', 'post', {
 
 Mock.mock('/score', 'post', (options) => {
   const body = JSON.parse(options.body);
-  return 100 - Math.round((body.costTime[1] - body.costTime[0]) / 100);
+  let score = 0;
+  let state = false;
+  // 测试第四个为正确答案
+  if (body.choice === 4) {
+    state = true;
+    score = 100 - Math.round((body.costTime[1] - body.costTime[0]) / 100);
+  }
+  return {
+    state,
+    score
+  };
 });

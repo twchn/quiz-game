@@ -43,20 +43,20 @@
         </div>
       </div>
       <!--三个按钮-->
-      <Button
+      <BeginButton
         class="practice-btn"
         @click.native="play('practice')"
       >
         <span class="text">练习模式 (每天三次机会)</span>
-      </Button>
-      <Button
+      </BeginButton>
+      <BeginButton
         class="normal-btn"
         @click.native="play('normal')"
       >
         <img class="begin" src="../../assets/icon/begin.svg" alt="begin">
         <span class="text">开始答题</span>
-      </Button>
-      <Button
+      </BeginButton>
+      <BeginButton
         class="activity-btn"
         @click.native="play('activity')"
         :propsStyle="{ backgroundColor: '#198cf9' }"
@@ -66,7 +66,7 @@
           <span>定期开启</span>
           <span>十分钟限时答题</span>
         </span>
-      </Button>
+      </BeginButton>
       <!--活动预告-->
       <div class="trailer">
         <div class="title">限时答题活动预告</div>
@@ -95,9 +95,9 @@ import { mapState, mapMutations } from 'vuex';
 import Icon from 'vue-awesome/components/Icon';
 import ScrollMessage from '../../components/ScrollMessage';
 import PromptBox from '../../components/PromptBox';
-import Button from '../../components/Button';
+import BeginButton from '../../components/BeginButton';
 import PreloadImage from '../../components/PreloadImage';
-import { GET_CACHE, SET_USER_INFO, SWITCH_MUSIC, PLAY_GAME } from '../../store/mutation-types';
+import { GET_CACHE, SET_USER_INFO, SWITCH_MUSIC, PLAY_GAME, END_GAME } from '../../store/mutation-types';
 import { getUserInfo, playGame } from '../../api';
 import musicIcon from '../../assets/icon/background-music.svg';
 import muteMusicIcon from '../../assets/icon/background-music-mute.svg';
@@ -195,7 +195,8 @@ export default {
       getCache: GET_CACHE,
       setUserInfo: SET_USER_INFO,
       switchMusic: SWITCH_MUSIC,
-      commitPlayGame: PLAY_GAME
+      commitPlayGame: PLAY_GAME,
+      endGame: END_GAME
     })
   },
   computed: {
@@ -220,7 +221,7 @@ export default {
     Icon,
     ScrollMessage,
     PromptBox,
-    Button,
+    BeginButton,
     PreloadImage
   },
   created() {
@@ -229,6 +230,8 @@ export default {
     // 避免刷新后失去背景模糊
     this.judgeBlur();
     this.loadUserInfo();
+    // 防止后退回主页再次通过url进入答题页
+    this.endGame();
     if (this.$route.params.message) {
       this.$nextTick(() => {
         this.showPromptBox(this.$route.params.message);

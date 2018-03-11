@@ -180,7 +180,6 @@ export default {
     };
   },
   methods: {
-    // 重置数据
     resetData() {
       this.show = false;
       this.optionsInfo = [
@@ -217,7 +216,11 @@ export default {
       // 重置之前的数据
       this.resetData();
       // 获取题目
-      getQuestion({ openid: this.openid, type: this.gameMode })
+      getQuestion({
+        openid: this.openid,
+        type: this.gameMode,
+        order: this.currentQuestion + 1
+      })
         .then(({ data }) => {
           this.currentQuestion += 1;
           this.question = data;
@@ -227,52 +230,48 @@ export default {
           this.costTime[0] = new Date().getTime();
         });
     },
-    // 判断答案
-    judgeAnswer(index) {
-      return index === 3;
-    },
     // 判断选择是否正确
     judgeResult(index) {
       if (this.isAnswered) return;
       this.costTime[1] = new Date().getTime();
-      if (this.judgeAnswer(index)) {
-        // 是否作答和是否答对同步更新
-        this.isRight = true;
-        this.$set(this.optionsInfo, index, {
-          selected: true,
-          state: true
-        });
-        this.computeScore();
-        // 答对停止倒计时
-        clearInterval(this.countdownInterval);
-        // 判断结束或者进行下一题
-        if (this.currentQuestion === this.questionCount) {
-          // 播放动画后展示结果
-          this.showResult();
-        } else {
-          // 播放动画后继续下一题
-          setTimeout(() => {
-            this.showQuestion();
-          }, 1500);
-        }
-      } else {
-        // 答错则停止倒计时
-        clearInterval(this.countdownInterval);
-        this.$set(this.optionsInfo, index, {
-          selected: true,
-          state: false
-        });
-        this.playAudio('wrong');
-        this.showResult();
-      }
-    },
-    // 计算分数，答对每少用一秒加10分，答错则不调用（得0分）
-    computeScore() {
-      getScore({ openid: this.openid, costTime: this.costTime })
+      getScore({
+        openid: this.openid,
+        questionId: this.questionId,
+        choice: index + 1,
+        costTime: this.costTime
+      })
         .then(({ data }) => {
-          this.totalScore += data;
+          if (data.state) {
+          // 是否作答和是否答对同步更新
+            this.isRight = true;
+            this.$set(this.optionsInfo, index, {
+              selected: true,
+              state: true
+            });
+            this.totalScore += data.score;
+            // 答对停止倒计时
+            clearInterval(this.countdownInterval);
+            // 判断结束或者进行下一题
+            if (this.currentQuestion === this.questionCount) {
+              // 播放动画后展示结果
+              this.showResult();
+            } else {
+              // 播放动画后继续下一题
+              setTimeout(() => {
+                this.showQuestion();
+              }, 1500);
+            }
+          } else {
+            // 答错则停止倒计时
+            clearInterval(this.countdownInterval);
+            this.$set(this.optionsInfo, index, {
+              selected: true,
+              state: false
+            });
+            this.playAudio('wrong');
+            this.showResult();
+          }
         });
-      this.costTime = [];
     },
     showResult() {
       // 结束游戏
@@ -314,7 +313,6 @@ export default {
   },
   beforeDestroy() {
     clearInterval(this.countdownInterval);
-    this.endGame();
   },
   watch: {
     optionsInfo() {

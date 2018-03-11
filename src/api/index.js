@@ -16,10 +16,10 @@ export function invite({ openid, code }) {
   return request('post', '/invite', { openid, code });
 }
 
-export function getQuestion({ openid, type }) {
-  return request('post', '/question', { openid, type });
+export function getQuestion({ openid, type, order }) {
+  return request('post', '/question', { openid, type, order });
 }
 
-export function getScore({ openid, costTime }) {
-  return request('post', '/score', { openid, costTime });
+export function getScore({ openid, questionId, choice, costTime }) {
+  return request('post', '/score', { openid, questionId, choice, costTime });
 }

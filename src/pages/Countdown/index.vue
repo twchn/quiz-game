@@ -72,7 +72,6 @@ export default {
   },
   beforeDestroy() {
     clearInterval(this.interval);
-    this.endGame();
   }
 };
 </script>

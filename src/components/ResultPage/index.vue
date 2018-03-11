@@ -10,19 +10,19 @@
         {{ text + '本场分数：' }}
         <span class="score">{{ score }}</span>
       </p>
-      <Button
+      <BeginButton
         :propsStyle="{ backgroundColor: '#198cf9', color: '#fff' }"
         @click.native="play"
       >
         再玩一局
-      </Button>
-      <Button
+      </BeginButton>
+      <BeginButton
         :propsStyle="{ backgroundColor: '#fd5b96', color: '#fff' }"
       >
         <router-link to="/share" class="btn">
           邀请好友
         </router-link>
-      </Button>
+      </BeginButton>
       <router-link to="/prize" class="tip">
         去首页查看我的奖金&nbsp;
         <Icon name="angle-right" />
@@ -36,7 +36,7 @@
 import Icon from 'vue-awesome/components/Icon';
 import { mapState, mapMutations } from 'vuex';
 import { PLAY_GAME } from '../../store/mutation-types';
-import Button from '../../components/Button';
+import BeginButton from '../../components/BeginButton';
 import successIcon from '../../assets/icon/success.svg';
 import failIcon from '../../assets/icon/fail.svg';
 import { playGame } from '../../api';
@@ -45,7 +45,7 @@ export default {
   name: 'ResultPage',
   components: {
     Icon,
-    Button
+    BeginButton
   },
   props: {
     result: Boolean, // true代表成功，false代表失败
