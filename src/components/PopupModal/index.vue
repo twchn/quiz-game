@@ -12,7 +12,7 @@
 export default {
   name: 'PopupModal',
   methods: {
-    goHomeWithMessage() {
+    goHome() {
       this.$router.push('/');
     }
   }

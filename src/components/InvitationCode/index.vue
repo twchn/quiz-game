@@ -46,7 +46,7 @@ export default {
     };
   },
   methods: {
-    goHomeWithMessage() {
+    goHome() {
       this.$router.push('/');
     },
     submitCode() {
@@ -59,15 +59,15 @@ export default {
           if (res.data.state) {
             this.$emit('showPromptBox', '邀请成功！');
             this.$store.commit('INVITE');
-            this.goHomeWithMessage();
+            this.goHome();
           } else {
             this.$emit('showPromptBox', '邀请码无效！');
-            this.goHomeWithMessage();
+            this.goHome();
           }
         })
         .catch(() => {
           this.$emit('showPromptBox', '网络错误，请重试！');
-          this.goHomeWithMessage();
+          this.goHome();
         });
     }
   }

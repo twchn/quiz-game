@@ -25,8 +25,8 @@
       </BeginButton>
       <router-link to="/prize" class="tip">
         去首页查看我的奖金&nbsp;
-        <Icon name="angle-right" />
-        <Icon name="angle-right" />
+        <Icon name="angle-right" class="icon" />
+        <Icon name="angle-right" class="icon" />
       </router-link>
     </div>
   </transition>
