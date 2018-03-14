@@ -4,10 +4,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: hidden;
   .header {
     width: 100%;
     height: 36vw;
-    background: #f6f6f6 url("../../assets/quiz-background.png") no-repeat center center;
+    background: url("../../assets/quiz-background.png") no-repeat center center;
     background-size: 100% 100%;
   }
   .background{
@@ -64,8 +65,7 @@
   }
   // 题目
   .question {
-    margin: 30px 0 10px;
-    width: 75%;
+    margin: 30px 10% 10px;
     text-align: center;
     color: #444;
     font-size: 20px;
@@ -80,49 +80,49 @@
     list-style: none;
     // 选项进入效果
     .slide-enter-active {
-      &:nth-child(1) {
-        transition: all .8s;
-      }
       &:nth-child(2) {
-        transition: all .8s .2s;
+        transition-delay: .1s;
       }
       &:nth-child(3) {
-        transition: all .8s .4s;
+        transition-delay: .2s;
       }
       &:nth-child(4) {
-        transition: all .8s .5s;
+        transition-delay: .3s;
       }
       &:nth-child(5) {
-        transition: all .8s .6s;
+        transition-delay: .4s;
       }
     }
     .slide-leave-active {
-      transition: all .5s;
-    }
-    .slide-enter {
-      opacity: 0;
-      transform: translateX(20%);
-    }
-    .slide-leave {
-      opacity: 0;
+      &:nth-child(2) {
+        transition-delay: .1s;
+      }
+      &:nth-child(3) {
+        transition-delay: .2s;
+      }
+      &:nth-child(4) {
+        transition-delay: .3s;
+      }
+      &:nth-child(5) {
+        transition-delay: .4s;
+      }
     }
   }
   // 题目进入动画
   .slide-enter-active {
-      transition: all 1s;
+    transition: all .8s;
   }
   .slide-leave-active {
-    transition: all .5s;
+    transition: all .6s;
   }
   .slide-enter {
-    opacity: 0;
-    transform: translateX(10%);
+    transform: translateX(100vw);
   }
-  .slide-leave {
-    opacity: 0;
+  .slide-leave-to {
+    transform: translateX(-100vw);
   }
   .bottom-bar {
     position: absolute;
-    bottom: 28px;
+    bottom: 4vh;
   }
 }

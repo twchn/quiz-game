@@ -89,7 +89,7 @@ Mock.mock('/score', 'post', (options) => {
   let score = 0;
   let state = false;
   // 测试第四个为正确答案
-  if (body.choice === 4) {
+  if (body.choice === 3) {
     state = true;
     score = 100 - Math.round((body.costTime[1] - body.costTime[0]) / 100);
   }

@@ -67,7 +67,7 @@ export default {
     this.$nextTick(() => {
       this.interval = setInterval(() => {
         this.playCountdown();
-      }, 1500);
+      }, 1300);
     });
   },
   beforeDestroy() {

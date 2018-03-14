@@ -50,7 +50,7 @@
         <div class="self list">
           <div class="list-box">
             <span class="rank">{{ rank }}</span>
-            <img class="avatar" :src="headImgUrl" alt="avatar">
+            <img class="avatar" v-lazy="headImgUrl" alt="avatar">
             <div class="user-name">{{ nickname }}</div>
             <div class="score">{{ score }}分</div>
           </div>
@@ -68,7 +68,7 @@ export default {
   name: 'RankingList',
   data() {
     return {
-      rankingType: 'total', // 排行榜类别，total为总榜，week为周榜
+      rankingType: 'week', // 排行榜类别，total为总榜，week为周榜
       rankingList: []
     };
   },

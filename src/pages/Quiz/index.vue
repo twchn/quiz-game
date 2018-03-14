@@ -135,12 +135,8 @@ export default {
       isAnswered: false,
       isRight: false, // 本题是否答对
       isEnd: false, // 是否结束（全部答对或答错一题）
-      optionsInfo: [
-        { selected: false },
-        { selected: false },
-        { selected: false },
-        { selected: false }
-      ],
+      optionsNum: 4,
+      optionsInfo: [],
       costTime: [], // 花费的时间，第一位开始时间，第二位结束时间
       totalScore: 0, // 总分
       showMessage: {}, // 要展示的消息
@@ -182,12 +178,7 @@ export default {
   methods: {
     resetData() {
       this.show = false;
-      this.optionsInfo = [
-        { selected: false },
-        { selected: false },
-        { selected: false },
-        { selected: false }
-      ];
+      this.optionsInfo = new Array(this.optionsNum).fill({ selected: false });
       this.isRight = false;
       this.restTime = 10;
     },
@@ -199,12 +190,7 @@ export default {
           this.playAudio('timeout');
         }
         if (this.restTime === 0) {
-          this.optionsInfo = [
-            { selected: true },
-            { selected: true },
-            { selected: true },
-            { selected: true }
-          ];
+          this.optionsInfo = new Array(this.optionsNum).fill({ selected: true });
           clearInterval(this.countdownInterval);
           this.showResult();
           return;
@@ -213,8 +199,6 @@ export default {
       }, 1000);
     },
     showQuestion() {
-      // 重置之前的数据
-      this.resetData();
       // 获取题目
       getQuestion({
         openid: this.openid,
@@ -258,8 +242,11 @@ export default {
             } else {
               // 播放动画后继续下一题
               setTimeout(() => {
+                this.resetData();
+              }, 1000);
+              setTimeout(() => {
                 this.showQuestion();
-              }, 1500);
+              }, 1600);
             }
           } else {
             // 答错则停止倒计时
@@ -281,7 +268,7 @@ export default {
         // 随机获取提示文本
         this.getRandomMessage(this.isRight ? this.successMessage : this.failMessage);
         this.isEnd = true;
-      }, 2000);
+      }, 1200);
     },
     getRandomMessage(array) {
       this.showMessage = array[Math.floor(Math.random() * array.length)];
@@ -307,6 +294,7 @@ export default {
     if (!this.gameMode) {
       this.$router.push('/');
     }
+    this.resetData();
   },
   mounted() {
     this.showQuestion();
@@ -319,11 +307,13 @@ export default {
       this.isAnswered = this.optionsInfo.some(element => element.selected);
     }
   },
-  computed: mapState([
-    'openid',
-    'mute',
-    'gameMode'
-  ]),
+  computed: {
+    ...mapState([
+      'openid',
+      'mute',
+      'gameMode'
+    ])
+  },
   components: {
     CountdownTimer,
     Option,
