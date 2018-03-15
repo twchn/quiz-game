@@ -32,6 +32,7 @@
     .icon {
       width: 6px;
       height: 16px;
+      margin-top: -1px;
     }
   }
   .invite-code {
@@ -167,8 +168,10 @@
   }
   // 游戏规则
   .help {
-    margin-top: 30px;
-    width: 100%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 14px;
     color: #fff;
     font-size: 12px;
     display: flex;
