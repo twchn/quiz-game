@@ -29,6 +29,10 @@
   .rank-list {
     left: 30%;
     background-color: #f9d74a;
+    .icon {
+      width: 6px;
+      height: 16px;
+    }
   }
   .invite-code {
     right: 25%;
@@ -41,14 +45,14 @@
     align-items: center;
     position: relative;
     width: 88%;
-    height: 60vh;
+    height: 400px;
     margin: auto;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, .3);
     // 头像
     .avatar {
-      margin-top: 14px;
+      margin: 16px 0 2px;
       width: 48px;
       height: 48px;
       border-radius: 24px;
@@ -73,6 +77,8 @@
         line-height: 16px;
         .icon {
           margin-top: -1px;
+          width: 6px;
+          height: 16px;
         }
       }
       div:nth-child(2) {
@@ -161,16 +167,15 @@
   }
   // 游戏规则
   .help {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 3vh;
+    margin-top: 30px;
+    width: 100%;
     color: #fff;
     font-size: 12px;
     display: flex;
     align-items: center;
+    justify-content: center;
     .help-icon {
-      height: 12px;
+      height: 14px;
       margin-top: -1px;
     }
     a {

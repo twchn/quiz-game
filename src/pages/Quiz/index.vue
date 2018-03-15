@@ -246,7 +246,7 @@ export default {
               }, 1000);
               setTimeout(() => {
                 this.showQuestion();
-              }, 1600);
+              }, 1700);
             }
           } else {
             // 答错则停止倒计时
