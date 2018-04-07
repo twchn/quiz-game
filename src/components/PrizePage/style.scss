@@ -31,14 +31,17 @@
   .title {
     margin: 0;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 600;
+    text-align: center;
   }
   .rules {
-    padding: 0 10%;
+    margin: 12px 20px;
+    padding: 10px 16px;
+    list-style-position: inside;
+    background-color: #f6f6f6;
     color: #333;
     border-radius: 6px;
     font-size: 14px;
-    list-style-position: inside;
     li {
       margin: 8px 0;
     }
