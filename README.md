@@ -1,6 +1,6 @@
 # 答题游戏
 
-![Lint](https://github.com/taoweicn/quiz-game/workflows/Lint/badge.svg)
+![Build and Deploy](https://github.com/taoweicn/quiz-game/workflows/Build%20and%20Deploy/badge.svg)
 
 > A question-and-answer game
 

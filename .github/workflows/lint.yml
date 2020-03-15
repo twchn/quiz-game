@@ -1,8 +1,5 @@
 name: Lint
-on:
-  pull_request:
-    branches:
-      - master
+on: [push, pull_request]
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest

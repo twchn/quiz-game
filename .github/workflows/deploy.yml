@@ -15,7 +15,6 @@ jobs:
       - name: Lint and Build 📦
         run: |
           yarn install
-          yarn run lint
           yarn run build
 
       - name: Deploy 🚀
