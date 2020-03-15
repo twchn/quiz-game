@@ -1,7 +1,5 @@
 <template>
-  <transition
-    name="slide"
-  >
+  <transition appear name="slide">
     <li
       :class="{ [optionsInfo.state ? 'right' : 'wrong']: optionsInfo.selected }"
       :style="wrongClass"

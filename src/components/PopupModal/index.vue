@@ -1,5 +1,5 @@
 <template>
-  <transition name="slide-fade">
+  <transition appear name="slide-fade">
     <div class="modal-container" @click.self="goHome">
       <div class="modal">
         <slot />

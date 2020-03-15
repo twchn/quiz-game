@@ -1,5 +1,5 @@
 <template>
-  <transition name="fade">
+  <transition appear name="fade">
     <div class="prompt-box">{{promptMessage}}</div>
   </transition>
 </template>

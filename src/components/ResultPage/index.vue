@@ -1,5 +1,5 @@
 <template>
-  <transition name="slide-up">
+  <transition appear name="slide-up">
     <div class="result-page">
       <router-link to="/">
         <img src="../../assets/icon/close.svg" class="back-btn" />

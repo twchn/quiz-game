@@ -1,5 +1,5 @@
 <template>
-  <transition name="slide-fade">
+  <transition appear name="slide-fade">
     <div class="rules-container">
       <header class="header">
         <router-link to="/">
