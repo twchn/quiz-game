@@ -23,31 +23,27 @@ yarn run dev
 yarn run build
 
 # build for production and view the bundle analyzer report
-yarn run build --report
+yarn run report
 ```
 
 ## 页面截图
 
 <div align="center">
 	<img src="./preview/screenshot1.png" width="320"/>
-	<br>
-	<span>首页</span>
+	<p>首页</p>
 </div>
 
 <div align="center">
 	<img src="./preview/screenshot2.png" width="320"/>
-	<br>
-	<span>排行榜界面</span>
+	<p>排行榜界面</p>
 </div>
 
 <div align="center">
 	<img src="./preview/screenshot3.png" width="320"/>
-	<br>
-	<span>邀请界面</span>
+	<p>邀请界面</p>
 </div>
 
 <div align="center">
 	<img src="./preview/screenshot4.png" width="320"/>
-	<br>
-	<span>答题界面</span>
+	<p>答题界面</p>
 </div>
