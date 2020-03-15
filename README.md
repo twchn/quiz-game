@@ -1,16 +1,18 @@
 # 答题游戏
 
+![Lint](https://github.com/taoweicn/quiz-game/workflows/Lint/badge.svg)
+
 > A question-and-answer game
 
 ## 技术栈
 
-- Vue及其全家桶
+- Vue 及其全家桶
 - scss
-- mockjs请求拦截
+- mockjs 请求拦截
 
 ## 构建步骤
 
-``` bash
+```bash
 # install dependencies
 yarn
 
@@ -28,23 +30,24 @@ yarn run build --report
 
 <div align="center">
 	<img src="./preview/screenshot1.png" width="320"/>
-	<br><span style="font-size: 12px; color: #999;">首页</span>
+	<br>
+	<span>首页</span>
 </div>
-
 
 <div align="center">
 	<img src="./preview/screenshot2.png" width="320"/>
-	<br><span style="font-size: 12px; color: #999;">排行榜界面</span>
+	<br>
+	<span>排行榜界面</span>
 </div>
-
 
 <div align="center">
 	<img src="./preview/screenshot3.png" width="320"/>
-	<br><span style="font-size: 12px; color: #999;">邀请界面</span>
+	<br>
+	<span>邀请界面</span>
 </div>
-
 
 <div align="center">
 	<img src="./preview/screenshot4.png" width="320"/>
-	<br><span style="font-size: 12px; color: #999;">答题界面</span>
+	<br>
+	<span>答题界面</span>
 </div>
