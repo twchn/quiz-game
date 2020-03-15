@@ -1,8 +1,6 @@
 <template>
 <div>
-  <PreloadImage
-    :imgArr="imgArr"
-  />
+  <PreloadImage />
   <PromptBox v-show="showPrompt" :promptMessage="promptMessage" />
   <main class="main" :class="{ blur: whetherBlur}">
     <div class="mask"></div>
@@ -93,21 +91,19 @@
 <script>
 import { mapState, mapMutations } from 'vuex';
 import Icon from 'vue-awesome/components/Icon';
-import ScrollMessage from '../../components/ScrollMessage';
-import PromptBox from '../../components/PromptBox';
-import BeginButton from '../../components/BeginButton';
-import PreloadImage from '../../components/PreloadImage';
-import { GET_CACHE, SET_USER_INFO, SWITCH_MUSIC, PLAY_GAME, END_GAME } from '../../store/mutation-types';
-import { getUserInfo, playGame } from '../../api';
-import musicIcon from '../../assets/icon/background-music.svg';
-import muteMusicIcon from '../../assets/icon/background-music-mute.svg';
-import imageList from './image-list';
+import ScrollMessage from '@/components/ScrollMessage';
+import PromptBox from '@/components/PromptBox';
+import BeginButton from '@/components/BeginButton';
+import PreloadImage from '@/components/PreloadImage';
+import { GET_CACHE, SET_USER_INFO, SWITCH_MUSIC, PLAY_GAME, END_GAME } from '@/store/mutation-types';
+import { getUserInfo, playGame } from '@/api';
+import musicIcon from '@/assets/icon/background-music.svg';
+import muteMusicIcon from '@/assets/icon/background-music-mute.svg';
 
 export default {
   name: 'HomePage',
   data() {
     return {
-      imgArr: imageList,
       showPrompt: false,
       whetherBlur: false,
       promptMessage: '',

@@ -62,7 +62,7 @@
 
 <script>
 import { mapState } from 'vuex';
-import { getRankingList } from '../../api';
+import { getRankingList } from '@/api';
 
 export default {
   name: 'RankingList',

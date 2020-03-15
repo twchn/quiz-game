@@ -35,11 +35,11 @@
 <script>
 import Icon from 'vue-awesome/components/Icon';
 import { mapState, mapMutations } from 'vuex';
-import { PLAY_GAME } from '../../store/mutation-types';
-import BeginButton from '../../components/BeginButton';
-import successIcon from '../../assets/icon/success.svg';
-import failIcon from '../../assets/icon/fail.svg';
-import { playGame } from '../../api';
+import { playGame } from '@/api';
+import { PLAY_GAME } from '@/store/mutation-types';
+import successIcon from '@/assets/icon/success.svg';
+import failIcon from '@/assets/icon/fail.svg';
+import BeginButton from '../BeginButton';
 
 export default {
   name: 'ResultPage',

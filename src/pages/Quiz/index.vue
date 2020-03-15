@@ -111,12 +111,12 @@
 
 <script>
 import { mapState, mapMutations } from 'vuex';
-import { END_GAME } from '../../store/mutation-types';
-import CountdownTimer from '../../components/CountdownTimer';
-import Option from '../../components/Option';
-import ResultPage from '../../components/ResultPage';
-import StatusBar from '../../components/StatusBar';
-import { getQuestion, getScore } from '../../api';
+import { END_GAME } from '@/store/mutation-types';
+import CountdownTimer from '@/components/CountdownTimer';
+import Option from '@/components/Option';
+import ResultPage from '@/components/ResultPage';
+import StatusBar from '@/components/StatusBar';
+import { getQuestion, getScore } from '@/api';
 
 export default {
   name: 'Quiz',

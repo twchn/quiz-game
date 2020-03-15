@@ -33,7 +33,7 @@
 
 <script>
 import { mapState } from 'vuex';
-import { invite } from '../../api';
+import { invite } from '@/api';
 
 export default {
   name: 'InvitationCode',

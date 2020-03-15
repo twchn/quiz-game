@@ -1,5 +1,5 @@
+import { setLocal, getLocal } from '@/utils/cache';
 import * as types from './mutation-types';
-import { setLocal, getLocal } from '../utils/cache';
 
 const mutations = {
   [types.GET_CACHE](state) {

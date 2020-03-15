@@ -14,10 +14,10 @@
 
 <script>
 import { mapState, mapMutations } from 'vuex';
-import { END_GAME } from '../../store/mutation-types';
-import img1 from '../../assets/countdown/1.svg';
-import img2 from '../../assets/countdown/2.svg';
-import img3 from '../../assets/countdown/3.svg';
+import { END_GAME } from '@/store/mutation-types';
+import img1 from '@/assets/countdown/1.svg';
+import img2 from '@/assets/countdown/2.svg';
+import img3 from '@/assets/countdown/3.svg';
 
 export default {
   name: 'Countdown',

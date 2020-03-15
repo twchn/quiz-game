@@ -10,7 +10,7 @@
       <p class="money">&yen;&nbsp;{{ prize }}</p>
       <h1 class="title">提现规则</h1>
       <ul class="rules">
-        <li>截图本页发送到公众号 <strong>HUSTEI资委会</strong>（HUSTEIZW）后台</li>
+        <li>截图本页发送到公众号 <strong>公众号名称</strong>（公众号ID）后台</li>
         <li>工作人员与后台数据核对后会在48小时之内发送奖金</li>
         <li>由于微信权限限制，奖金会以支付宝口令红包的形式发送</li>
         <li>每人只有一次提现机会</li>

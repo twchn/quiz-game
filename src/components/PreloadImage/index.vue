@@ -19,12 +19,6 @@
 <script>
 export default {
   name: 'PreloadImage',
-  props: {
-    imgArr: {
-      type: Array,
-      required: true
-    }
-  },
   data() {
     return {
       loadedCount: 0,
@@ -34,6 +28,8 @@ export default {
   methods: {
     // 无序加载图片
     unorderedPreload() {
+      const imagesContext = require.context('@/assets/', true, /\.(png|jpeg|jpg|gif)$/);
+      this.imgArr = imagesContext.keys().map(imagesContext);
       this.imgArr.forEach((imgUrl) => {
         const imgObj = new Image();
         imgObj.addEventListener('load', this.imageLoaded);
