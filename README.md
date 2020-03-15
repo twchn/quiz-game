@@ -4,13 +4,13 @@
 
 ## 技术栈
 
-- Vue及其全家桶
+- Vue 及其全家桶
 - scss
-- mockjs请求拦截
+- mockjs 请求拦截
 
 ## 构建步骤
 
-``` bash
+```bash
 # install dependencies
 yarn
 
@@ -26,25 +26,28 @@ yarn run build --report
 
 ## 页面截图
 
-<div align="center">
+<figure align="center">
 	<img src="./preview/screenshot1.png" width="320"/>
-	<br><span style="font-size: 12px; color: #999;">首页</span>
-</div>
+	<figcaption>首页</figcaption>
+</figure>
 
+<br>
 
-<div align="center">
+<figure align="center">
 	<img src="./preview/screenshot2.png" width="320"/>
-	<br><span style="font-size: 12px; color: #999;">排行榜界面</span>
-</div>
+	<figcaption>排行榜界面</figcaption>
+</figure>
 
+<br>
 
-<div align="center">
+<figure align="center">
 	<img src="./preview/screenshot3.png" width="320"/>
-	<br><span style="font-size: 12px; color: #999;">邀请界面</span>
-</div>
+	<figcaption>邀请界面</figcaption>
+</figure>
 
+<br>
 
-<div align="center">
+<figure align="center">
 	<img src="./preview/screenshot4.png" width="320"/>
-	<br><span style="font-size: 12px; color: #999;">答题界面</span>
-</div>
+	<figcaption>答题界面</figcaption>
+</figure>
