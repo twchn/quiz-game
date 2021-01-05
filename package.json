@@ -12,7 +12,7 @@
     "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "normalize.css": "^8.0.0",
     "vue": "^2.5.2",
     "vue-awesome": "^2.3.4",
